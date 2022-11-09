@@ -1,4 +1,4 @@
-//achar a maior sequencia contigua entre duas strings em que o suffix de uma delas é o prefix da outra!!!
+//achar a maior sequencia contigua entre duas strings em que o suffix de uma delas é o prefix da outra em O(n)
 void lps(string str, vector<int>&match){
     int j=0;
     match[0]=0;
