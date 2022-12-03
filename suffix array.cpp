@@ -1,7 +1,3 @@
-#include <bits/stdc++.h>
-
-using namespace std;
-
 struct MinQueue{
     deque<pair<int,int>>q;
     void push(int x){
@@ -143,7 +139,3 @@ public:
         return ans;
     }
 };
-int main(){
-    ios_base::sync_with_stdio(false);cin.tie(NULL);
-    
-}
