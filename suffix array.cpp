@@ -24,6 +24,7 @@ private:
     int n;
     string str;
     vector<int>SA,LCP,idx;
+
 public:
     SuffixArray(int N, string STR){
         n=N,str=STR;
