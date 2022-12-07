@@ -127,7 +127,7 @@ public:
         cout<<n<<endl;
         for(int i=0; i<n; i++){
             cout<<'['<<i<<']'<<SA[i]<<": "<<LCP[i]<<" -> ";
-            for(int j=SA[i]; j<n; j++) cout<< str[j];
+            for(int j=SA[i]; j<n; j++) cout<<str[j];
             cout<<endl;
         }
     }
