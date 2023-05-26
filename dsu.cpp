@@ -74,9 +74,10 @@ auto main() -> signed {
   
   int n, m, e; in(n, m, e);
   V<ii> edges(e);
-  for(int i = 0; i < e; i++) {
-    in(edges[i]); edges[i].ff--, edges[i].ss--;
+  for(auto &[u, v] : edges) {
+    in(u, v); u--, v--;
   }
+
   int q; in(q);
   V<int> queries(q);
   V<bool> linked(e, 1);
@@ -84,26 +85,19 @@ auto main() -> signed {
     in(queries[i]); queries[i]--;
     linked[queries[i]] = 0;
   }
-  DSU d(n + m);
+  DSU d(n + m + 1); // ideia de sink em flow
   for(int i = 0; i < e; i++) {
     if(linked[i]) d.join(edges[i].ff, edges[i].ss);
   }
+  int S = n + m;
+  for(int i = n; i < n + m; i++) {
+    d.join(i, S);
+  }
   V<int> ans(q);
   for(int i = q - 1; i >= 0; i--) {
-    int links = 0;
-    debug("LINKED EDGE:", i, edges[queries[i]]);
-    for(int j = n; j < n + m; j++) {
-      bool ok = 0;
-      d.find(j, ok, n);
-      out("teste:", j, "ok:", ok);
-      links += ok;
-    }
-    out("LINKS:", links);
-    ans[i] = links;
-    d.join(edges[queries[i]].ff, edges[queries[i]].ss);
+    auto [u, v] = edges[queries[i]];
+    // terminar aqui
+    d.join(u, v);
   }
-  reverse(all(ans));
-  for(auto i : ans) {
-    out(i);
-  }
+  
 }
