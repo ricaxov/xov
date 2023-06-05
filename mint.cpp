@@ -1,5 +1,4 @@
 const int MOD = 998'244'353;
-const string teste = "teste isso aqui eh um teste, testando 123";
 
 template<unsigned P> struct Z {
   unsigned value;
@@ -17,8 +16,8 @@ template<unsigned P> struct Z {
   friend Z operator - (Z lhs, Z rhs) { return lhs -= rhs; }
   friend Z operator * (Z lhs, Z rhs) { return lhs *= rhs; }
   friend Z operator / (Z lhs, Z rhs) { return lhs /= rhs; }
-  friend ostream& operator << (ostream& os, Z a) { return os << a.value; }
-  friend istream& operator >> (istream& is, Z& a) { long long value; is >> value; a = Z(value); return is; }
+  friend auto& operator << (ostream& os, Z a) { return os << a.value; }
+  friend auto& operator >> (istream& is, Z& a) { long long value; is >> value; a = Z(value); return is; }
 };
 template<unsigned P> Z<P> pow(Z<P> x, long long p) {
   if(x == 0) return (p == 0 ? 1 : 0);
