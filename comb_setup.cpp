@@ -1,6 +1,6 @@
-const int MAXN = 1e5 + 5, MOD = 998244353;
+const int MAXN = 1e5 + 5, MOD = 998'244'353;
 
-V<int> fact(MAXN), ifact(MAXN);
+vector<int> fact(MAXN), ifact(MAXN);
 int fexp(int b, int e) {
   if(e == 0) return 1;
   int h = fexp(b, e / 2); (h *= h) %= MOD;
