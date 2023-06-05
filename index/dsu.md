@@ -2,7 +2,7 @@
 
 ## Impementation
 
-```
+```cpp
 struct DSU {
   vector<int> p, s;
   DSU(int n) { p.assign(n, -1), s.assign(n, 1); }
