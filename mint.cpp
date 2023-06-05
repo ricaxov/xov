@@ -1,4 +1,5 @@
 const int MOD = 998'244'353;
+const string teste = "teste isso aqui eh um teste, testando 123";
 
 template<unsigned P> struct Z {
   unsigned value;
