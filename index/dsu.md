@@ -1,7 +1,5 @@
 # Disjoint Set Union
 
-## Impementation
-
 ```cpp
 struct DSU {
   vector<int> p, s;
