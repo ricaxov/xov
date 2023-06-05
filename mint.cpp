@@ -1,4 +1,4 @@
-const int MOD = 998244353;
+const int MOD = 998'244'353;
 
 template<unsigned P> struct Z {
   unsigned value;
