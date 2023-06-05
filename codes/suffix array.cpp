@@ -1,3 +1,5 @@
+// Still need to fix some things
+
 struct MinQueue{
   deque<pair<int,int>>q;
   void push(int x){
