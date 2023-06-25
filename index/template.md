@@ -33,6 +33,9 @@ using iii = array<int, 3>;
 #define L1(x...) [&](auto X) { return x; }
 #define L2(x...) [&](auto X, auto Y) { return x; }
 
+template<class X, class Y> inline void mir(X& x, Y y) { if (x > y) x = y; }
+template<class X, class Y> inline void mar(X& x, Y y) { if (x < y) x = y; }
+
 template<class X, class Y> auto& operator >> (istream& is, pair<X, Y>& var) { is >> var.ff >> var.ss; return is; }
 template<class X, class Y> auto& operator << (ostream& os, pair<X, Y> const& var) { os << "(" << var.ff << " " << var.ss << ")"; return os; }
 template<class X> auto& operator >> (istream& is, vector<X>& var) { for(auto &x : var) is >> x; return is; }
