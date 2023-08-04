@@ -15,7 +15,7 @@ public:
 
   void build() {
     for(int i = n - 1; i > 0; i--) {
-      SEG[i] = merge(ST[2 * i], ST[2 * i + 1]);
+      SEG[i] = merge(SEG[2 * i], SEG[2 * i + 1]);
     }
   }
 
