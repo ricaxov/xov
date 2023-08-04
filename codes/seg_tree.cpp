@@ -1,7 +1,7 @@
 template<typename T> class SegmentTree {
   int n;
-  T neutral;
   V<T> ST;
+  T neutral;
   function<T(T,T)> merge;
 public:
   SegmentTree(int n, T neutral, function<T(T,T)> merge) : n(n), neutral(neutral), merge(merge), ST(2 * n, neutral) {};
