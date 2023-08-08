@@ -59,7 +59,7 @@ template<typename T> struct HLD {
   vector<T> sv, tmp, leader, par, pos, tree_sz;
   
   HLD() {}
-  HLD(int n) : G(n + 1), leader(n + 1), par(n + 1), pos(n + 1), tree_sz(n + 1), sv(n + 1), tmp(n) {};
+  HLD(int n) : G(n + 1), leader(n + 1), par(n + 1), pos(n + 1), tree_sz(n + 1), sv(n + 1), tmp(n + 1) {};
  
   void add_edge(int u, int v, T w) {
     G[u].emplace_back(v, w);
