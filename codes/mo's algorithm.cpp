@@ -8,12 +8,10 @@ struct Query {
 };
  
 void add(int x) {
-  if(occ[v[x]] % 2 == 1) cur++;
-  occ[v[x]]++;
+
 }
 void rem(int x) {
-  if(occ[v[x]] > 0 && occ[v[x]] % 2 == 0) cur--;
-  occ[v[x]]--;
+  
 }
  
 V<int> mo(V<Query> queries) {
