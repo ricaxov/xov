@@ -1,5 +1,6 @@
 # Virtual Every Day September
 
+Got this idea after i saw [Jotinha](https://codeforces.com/profile/Jotinha) and [Huglio](https://codeforces.com/profile/huglio)
 
 ## Day 1
 
