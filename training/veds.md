@@ -8,8 +8,6 @@ I'll be using the [Codeforces Visualizer](https://cfviz.netlify.app/virtual-rati
 
 My theory is that after september i can maybe reach cyan or at least get a little better.
 
-Starting Rating: 1212
-
 ## Day 1
 
 ## Day 2
