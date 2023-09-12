@@ -7,9 +7,14 @@ I'll be using the [Codeforces Visualizer](https://cfviz.netlify.app/virtual-rati
 ## Day 1
 [Codeforces Round 486](https://codeforces.com/contest/988)
 
-- ricaxov: $1212 + x = 1212$
-- iago_123: $123123 + x = 123132$
+- ricaxov: $1212 + 68 = 1280$
+- iago_123: $1016 + 120 = 1136$
   
+### Upsolving xov
+
+- [X] C - Equal Sums
+- [X] D - Points and Powers of Two
+
 ## Day 2
 
 ## Day 3
