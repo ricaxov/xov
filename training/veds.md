@@ -5,6 +5,7 @@ Got this idea after I saw [Jotinha](https://codeforces.com/profile/Jotinha) and 
 I'll be using the [Codeforces Visualizer](https://cfviz.netlify.app/virtual-rating-change.html) to calculate my rating changes.
 
 ## Day 1
+[round de hj](https://codeforces.com/contest/988)
 
 ## Day 2
 
