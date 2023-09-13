@@ -32,7 +32,7 @@ I'll be using the [Codeforces Visualizer](https://cfviz.netlify.app/virtual-rati
 
 ### Upsolving iago
 
-- [ ] D - Number into Sequence
+- [X] D - Number into Sequence
 - [ ] E - Number of Simple Paths
 
 ## Day 3
