@@ -15,7 +15,25 @@ I'll be using the [Codeforces Visualizer](https://cfviz.netlify.app/virtual-rati
 - [X] C - Equal Sums
 - [X] D - Points and Powers of Two
 
+### Upsolving iago
+
+- [X] C - Equal Sums
+- [ ] D - Points and Powers of Two
+
 ## Day 2
+[Codeforces Round 686](https://codeforces.com/contest/1454)
+
+- ricaxov: $1280 + 100 = 1380$
+- iago_123: $1136 + 4 = 1140$
+  
+### Upsolving xov
+
+- [ ] E - Number of Simple Paths
+
+### Upsolving iago
+
+- [ ] D - Number into Sequence
+- [ ] E - Number of Simple Paths
 
 ## Day 3
 
