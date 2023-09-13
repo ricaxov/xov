@@ -36,7 +36,21 @@ I'll be using the [Codeforces Visualizer](https://cfviz.netlify.app/virtual-rati
 - [ ] E - Number of Simple Paths
 
 ## Day 3
+[Codeforces Round 690](https://codeforces.com/contest/1462)
 
+- ricaxov: $1380 + 20 = 1400$
+- iago_123: $1140 - 35 = 1105$
+  
+### Upsolving xov
+
+- [X] E2 - Close Tuples (hard version)
+
+### Upsolving iago
+
+- [ ] D - Add to Neighbour and Remove
+- [ ] E1 - Close Tuples (easy version)
+- [ ] E2 - Close Tuples (hard version)
+      
 ## Day 4
 
 ## Day 5
