@@ -10,6 +10,9 @@ using namespace std;
 using namespace __gnu_pbds;
 template<class X> using ordered_set = tree<X, null_type, less<X>, rb_tree_tag, tree_order_statistics_node_update>;
 
+#pragma GCC optimize("O3,unroll-loops")
+#pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
+
 #define int long long
 #define fastio ios::sync_with_stdio(false); cin.tie(nullptr)
 
