@@ -22,7 +22,7 @@ index = {key1, key2}
 #### Hashing function:
 ![HASH-FUNCTION](https://cybersecurityglossary.com/wp-content/uploads/2019/07/Hash-function.jpg)
 
-#### A simple, but nice, way to calculate Hashing
+#### A simple, but nice, way to calculate Hashing:
 
 **Let's assume that S is the string we want to hash and it has size N:**
 
