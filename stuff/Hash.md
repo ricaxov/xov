@@ -26,7 +26,7 @@ index = {key1, key2}
 
 **Let's assume that S is the string we want to hash and it has size N:**
 
-$Hash(S) = S[0] + S[1] * P + S[2] * P ^ 2 + ... + S[K] * P ^ K % M$
+$Hash(S) = S[0] + S[1] * P + S[2] * P ^ 2 + ... + S[K] * P ^ K \\ \\% \\ M$
 
 In these case, K is equal to N - 1, P and M are positive numbers, usually prime. 
 
