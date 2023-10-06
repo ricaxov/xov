@@ -22,6 +22,13 @@ index = {key1, key2}
 #### Hashing function:
 ![HASH-FUNCTION](https://cybersecurityglossary.com/wp-content/uploads/2019/07/Hash-function.jpg)
 
+#### A simple, but nice, way to calculate Hashing
+
+**Let's assume that S is the string we want to hash and it has size N:**
+
+$Hash(S) = S[0] + S[1] * P + S[2] * P ^ 2 + ... + S[N - 1] * P ^ K % M$
+
+In these case, K is equal to N - 1, P and M are positive numbers, usually prime. 
 
 #### Simple implementation:
 ```c++
@@ -64,7 +71,6 @@ struct HashedString {
   }
 };
 ```
-
 
 ---
 
