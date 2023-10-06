@@ -34,6 +34,38 @@ int Hash(string key) {
 }
 ```
 
+#### My Hash implementation:
+```c++
+const int mod1 = 1000015553, mod2 = 1000028537;
+const int base1 = 37, base2 = 31;
+struct HashedString {
+  int n;
+  string s;
+  vector<int> hsh1, pwr1, hsh2, pwr2;
+ 
+  HashedString() : n(0) {}
+  HashedString(string s) : n(sz(s)), s(s), hsh1(n), pwr1(n), hsh2(n), pwr2(n) {	
+    pwr1[0] = pwr2[0] = 1;
+    for (int i = 1; i < n; i++) {
+      pwr1[i] = (base1 * pwr1[i - 1]) % mod1;
+      pwr2[i] = (base2 * pwr2[i - 1]) % mod2;
+    }
+    hsh1[0] = hsh2[0] = s[0];
+    for(int i = 1; i < n; i++) {
+      hsh1[i] = (hsh1[i - 1] * base1 + (int)(s[i])) % mod1;
+      hsh2[i] = (hsh2[i - 1] * base2 + (int)(s[i])) % mod2;
+    }
+  }
+  int hash(int i, int j) {
+    if (i == 0) return (hsh1[j] << 30) ^ (hsh2[j]);
+    int ret1 = ((hsh1[j] - (hsh1[i - 1] * pwr1[j - i + 1])) % mod1 + mod1) % mod1;
+    int ret2 = ((hsh2[j] - (hsh2[i - 1] * pwr2[j - i + 1])) % mod2 + mod2) % mod2;
+    return (ret1 << 30) ^ (ret2);
+  }
+};
+```
+
+
 ---
 
 ### Questions
