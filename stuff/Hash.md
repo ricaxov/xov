@@ -16,8 +16,8 @@ index = {key1, key2}
 #### Chaining Hashing:
 - Create a linked list in an index of our Hash Table to bypass the problems with collisions.
 
-#### Multiplying Hashing
-- We use prime number multiplications to find the key where our current value will stay at:
+#### Multiplying Hashing:
+- We use prime number multiplications to find the key where our current value will stay at.
 
 #### Hashing function:
 ![HASH-FUNCTION](https://cybersecurityglossary.com/wp-content/uploads/2019/07/Hash-function.jpg)
@@ -51,15 +51,15 @@ Hash("Superman") = 1234
 
 **How do we fix this problem?**
 
-We just iterate over our Hash Table and use a index which has not been used before or we can just use linked lists
+We just iterate over our Hash Table and use a index which has not been used before or we can just use linked lists.
 
 **How do we get rid of this problem?**
 
-We have lots of ways of getting rid of our hashing collision without having to use another data structure, but the easiest one is probably double hashing, which consists in just hashing twice 
+We have lots of ways of getting rid of our hashing collision without having to use another data structure, but the easiest one is probably double hashing, which consists in just hashing twice.
 
 #### 2nd question
 
-**Insert**
+**Insert:**
 
 ```py
 Insert "Elder Wand", "Manoel's Wand", "Luis's Wand"
@@ -73,7 +73,7 @@ Hash_Table[1] = {"Luis's Wand"}
 Hash_Table[2] = {}
 ```
 
-**Search**
+**Search:**
 
 ```py
 Search "Elder Wand", "Manoel's Wand", "Ricardo's Wand"
@@ -86,7 +86,7 @@ We will find both the "Elder Wand" and "Manoel's Wand", but not "Ricardo's Wand"
 "Ricardo's Wand" does not exist on Hash_Table
 ```
 
-**Delete**
+**Delete:**
 
 ```py
 Delete "Elder Wand", "Manoel's Wand", "Ricardo's Wand"
@@ -101,6 +101,7 @@ We will delete both the "Elder Wand" and "Manoel's Wand", but not "Ricardo's Wan
 
 #### 3rd question
 
+**Absence of thought implementation:**
 ```c++
 class Hash_Table {
   map<pair<int, int>, int> TABLE;
@@ -117,8 +118,9 @@ class Hash_Table {
   }
 };
 ```
+> Please don't do something dumb like this 😅
 
-I'd choose double hashing, since it's a lot easier
+I'd choose double hashing, since it's a lot easier.
 
 #### 4th question
 
@@ -130,7 +132,7 @@ Hash("Batarang") = 31293
 Hash("Batmilk") = 42069
 ```
 
-As we can see it's literally impossible to confuse our hashed items
+As we can see it's literally impossible to confuse our hashed items.
 
 #### 5th question
 
@@ -199,7 +201,7 @@ Hash_Table[0] = "Dragons"
 Hash_Table[1] = "Dungeons"
 ```
 
-As we can see using different methods might result in different configurations on our Hash Table
+As we can see using different methods might result in different configurations on our Hash Table.
 
 #### 9th question
 
@@ -213,7 +215,7 @@ Hash("Spok") = (Hash("Spok") + 2 * 2) % N
 Hash("Kirk") = (Hash("Kirk") + 3 * 3) % N
 ```
 
-Using this tecnique we will surely not have the same slots occupied at the same time
+Using this tecnique we will probably not have the same slots occupied at the same time, like we did before.
 
 #### 10th question
 
