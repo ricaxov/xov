@@ -182,7 +182,7 @@ Hash("Luke") = Hash("Yoda")
 
 This would cause a failure in the data integrity, but this problem could easily be solved using Double Hashing, Chaining Hashing and possibly some other methods.
 
-Since Double Hashing is probably the easiest is the one i will choose again:
+Since Double Hashing is probably the easiest, it's the one i'm gonna choose again:
 
 ```py
 Hash("Luke") = {key1, key2}
