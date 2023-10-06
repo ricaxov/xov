@@ -142,11 +142,11 @@ We will delete both the "Elder Wand" and "Manoel's Wand", but not "Ricardo's Wan
 **Absence of thought implementation:**
 ```c++
 class Hash_Table {
-  map<pair<int, int>, int> TABLE;
-  void insert(pair<int, int> key, int value) {
+  unordered_map<int, int> TABLE;
+  void insert(int key, int value) {
     TABLE[key] = value;
   }
-  bool search(pair<int, int> key) {
+  bool search(int key) {
     if(TABLE.find(key) == end(TABLE)) return 0;
     return 1;
   }
