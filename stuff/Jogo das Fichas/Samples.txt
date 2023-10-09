@@ -1,0 +1,45 @@
+Sample 1:
+2A6 2A6 2A6 2A6 2P6 2A6 2P6 2A6 2A6 2A6 2A6 2A6 2A6
+3V6 3V6 3P6 3P6 3V6 3V6 3V6 3V6 3V6 3V6 3V6 3V6 3V6 
+4R6 4P6 4P6 4R6 4R6 4R6 4R6 4R6 4R6 4R6 4R6 4R6 4R6 
+1P6 1P6 1B6 1B6 1B6 1B6 1B6 1B6 1B6 1B6 1B6 1B6 1B6
+
+Resposta 1:
+Vencedores:
+A B
+
+Mao do jogador 1: Vazia
+Mao do jogador 2: Vazia
+Mao do jogador 3: Vazia
+Mao do jogador 4: Vazia
+
+Tabuleiro final:
+B V B V B V
+R A R A R R
+B B V B V V
+R R A R A R
+V V B V B B
+A A R A R A
+
+Sample 2:
+1P1 1P1 1A1 1A1 1A1 1A1 1A1 1A1 1A1 1A1 1A1 1A1 1A1
+2P1 2P1 2V1 2V1 2V1 2V1 2V1 2V1 2V1 2V1 2V1 2V1 2V1
+3P1 3P1 3R1 3R1 3R1 3R1 3R1 3R1 3R1 3R1 3R1 3R1 3R1 
+4P1 4P1 4B1 4B1 4B1 4B1 4B1 4B1 4B1 4B1 4B1 4B1 4B1
+
+Resposta 2:
+Vencedores:
+V R
+
+Mao do jogador 1: 1A1 1A1
+Mao do jogador 2: 2V1 2V1
+Mao do jogador 3: 3R1 3R1
+Mao do jogador 4: 4B1 4B1
+
+Tabuleiro final:
+V B V B V B
+A R A R A R
+B V B V B V
+R A R A R A
+V B V B V B
+A R A R A R
