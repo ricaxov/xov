@@ -199,7 +199,10 @@ int main() {
       char save = '0';
       int torre = jogadores[i].front().tower - 49;
       int saveTower = torre;
-      while(tabuleiro[torre].size() == 6) torre = (torre + 1) % 6;
+      while(tabuleiro[torre].size() == 6) {
+        torre = (torre + 1) % 6;
+        cout << "torre: " << torre << '\n';
+      }
       if(jogadores[i].front().color == 'P') {
         if(tabuleiro[saveTower].size() > 0) {
           tabuleiro[saveTower].pop();
