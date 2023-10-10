@@ -151,69 +151,40 @@ template<typename T> T Queue<T>::front() {
 // }}}
 
 int main() {
-  string fichasAux[52];
-  for(int i = 0, a = 0, b = 13, c = 26, d = 39; i < 52; i++) {
+  // azul, vermelho, roxo, branco
+  string primeiro[13], segundo[13], terceiro[13], quarto[13];
+  for(int i = 0, a = 0, b = 0, c = 0, d = 0; i < 52; i++) {
     string str; cin >> str;
-    if(str[0] == '1') fichasAux[a++] = str;
-    else if(str[0]=='2') fichasAux[b++] = str;
-    else if(str[0]=='3') fichasAux[c++] = str;
-    else fichasAux[d++] = str;
+    if(str[0] == '1') primeiro[a++] = str;
+    else if(str[0]=='2') segundo[b++] = str;
+    else if(str[0]=='3') terceiro[c++] = str;
+    else quarto[d++] = str;
   }
-  bool cor[4];
+  string ordem = "AVRB";
   Queue<Ficha> jogadores[4];
-  memset(cor, 0, sizeof(cor));
-  for(int i = 0; i < 13; i++) {
-    if(fichasAux[i][1] == 'A') cor[0] = 1;
-    else if(fichasAux[i][1] == 'V') cor[1] = 1;
-    else if(fichasAux[i][1] == 'R') cor[2] = 1;
-    else if(fichasAux[i][1] == 'B') cor[3] = 1;
-  }
-  for(int i = 0; i < 4; i++) {
-    if(cor[i]) {
+  for(int l = 0; l < 4; l++) {
+    int k = -1;
+    for(int i = 0; i < 13; i++) {
+      if(primeiro[i][1] == ordem[l]) k = 0;
+      else if(segundo[i][1] == ordem[l]) k = 1;
+      else if(terceiro[i][1] == ordem[l]) k = 2;
+      else if(quarto[i][1] == ordem[l]) k = 3;
+    }
+    if(k == 0) {
       for(int j = 0; j < 13; j++) {
-        jogadores[i].push(Ficha(fichasAux[j][0], fichasAux[j][1], fichasAux[j][2]));
+        jogadores[l].push(Ficha(primeiro[j][0], primeiro[j][1], primeiro[j][2]));
       }
-    }
-  }
-  memset(cor, 0, sizeof(cor));
-  for(int i = 13; i < 26; i++) {
-    if(fichasAux[i][1] == 'A') cor[0] = 1;
-    else if(fichasAux[i][1] == 'V') cor[1] = 1;
-    else if(fichasAux[i][1] == 'R') cor[2] = 1;
-    else if(fichasAux[i][1] == 'B') cor[3] = 1;
-  }
-  for(int i = 0; i < 4; i++) {
-    if(cor[i]) {
-      for(int j = 13; j < 26; j++) {
-        jogadores[i].push(Ficha(fichasAux[j][0], fichasAux[j][1], fichasAux[j][2]));
+    } else if(k == 1) {
+      for(int j = 0; j < 13; j++) {
+        jogadores[l].push(Ficha(segundo[j][0], segundo[j][1], segundo[j][2]));
       }
-    }
-  }
-  memset(cor, 0, sizeof(cor));
-  for(int i = 26; i < 39; i++) {
-    if(fichasAux[i][1] == 'A') cor[0] = 1;
-    else if(fichasAux[i][1] == 'V') cor[1] = 1;
-    else if(fichasAux[i][1] == 'R') cor[2] = 1;
-    else if(fichasAux[i][1] == 'B') cor[3] = 1;
-  }
-  for(int i = 0; i < 4; i++) {
-    if(cor[i]) {
-      for(int j = 26; j < 39; j++) {
-        jogadores[i].push(Ficha(fichasAux[j][0], fichasAux[j][1], fichasAux[j][2]));
+    } else if(k == 2) {
+      for(int j = 0; j < 13; j++) {
+        jogadores[l].push(Ficha(terceiro[j][0], terceiro[j][1], terceiro[j][2]));
       }
-    }
-  }
-  memset(cor, 0, sizeof(cor));
-  for(int i = 39; i < 52; i++) {
-    if(fichasAux[i][1] == 'A') cor[0] = 1;
-    else if(fichasAux[i][1] == 'V') cor[1] = 1;
-    else if(fichasAux[i][1] == 'R') cor[2] = 1;
-    else if(fichasAux[i][1] == 'B') cor[3] = 1;
-  }
-  for(int i = 0; i < 4; i++) {
-    if(cor[i]) {
-      for(int j = 39; j < 52; j++) {
-        jogadores[i].push(Ficha(fichasAux[j][0], fichasAux[j][1], fichasAux[j][2]));
+    } else {
+      for(int j = 0; j < 13; j++) {
+        jogadores[l].push(Ficha(quarto[j][0], quarto[j][1], quarto[j][2]));
       }
     }
   }
@@ -223,6 +194,7 @@ int main() {
   memset(matrix, '0', sizeof(matrix));
   int towersIndex[6] = {5, 5, 5, 5, 5, 5};
   while(size < 36) {
+    cout << "size: " << size << '\n';
     for(int i = 0; i < 4; i++) {
       char save = '0';
       int torre = jogadores[i].front().tower - 49;
@@ -232,24 +204,23 @@ int main() {
         if(tabuleiro[saveTower].size() > 0) {
           tabuleiro[saveTower].pop();
           size--;
-          matrix[towersIndex[saveTower]++][saveTower] = save;
+          matrix[++towersIndex[saveTower]][saveTower] = save;
         }
-      }
-      else{
+      } else {
         tabuleiro[torre].push(jogadores[i].front().color);
         save = jogadores[i].front().color;
         size++;
         matrix[towersIndex[torre]--][torre] = save;
       }
       jogadores[i].pop();
-      // cout << "Tabuleiro atual:" << '\n';
-      // for(int j = 0; j < 6; j++) {
-      //   for(int k = 0; k < 6; k++) {
-      //     cout << matrix[j][k] << ' ';
-      //   }
-      //   cout << '\n';
-      // }
-      // cout << '\n';
+      cout << "Tabuleiro atual:" << '\n';
+      for(int j = 0; j < 6; j++) {
+        for(int k = 0; k < 6; k++) {
+          cout << matrix[j][k] << ' ';
+        }
+        cout << '\n';
+      }
+      cout << '\n';
     }
   }
   int resultados[4];
@@ -261,27 +232,26 @@ int main() {
     else resultados[3]++; 
   }
   int maior = *max_element(resultados, resultados + 4);
-  bool primeiro = 1;
-  string vencedores = "AVRB";
+  bool primeiroesp = 1;
   cout << "Vencedores:" << '\n';
   for(int i = 0; i < 4; i++) {
     if(resultados[i] == maior) {
-      if(primeiro == 0) cout << ' ';
-      cout << vencedores[i];
-      primeiro = 0;
+      if(primeiroesp == 0) cout << ' ';
+      cout << ordem[i];
+      primeiroesp = 0;
     }
   }
   cout << '\n' << '\n';
   for(int i = 0; i < 4; i++) {
     cout << "Mao do jogador " << i + 1 << ": ";
-    if(jogadores[i].size() == 0) cout << "Vazia" << '\n';
+    if(jogadores[i].empty() == 1) cout << "Vazia" << '\n';
     else {
-      bool auxprimeiro = 1;
+      bool segundoesp = 1;
       while(!jogadores[i].empty()) {
-        if(auxprimeiro == 0) cout << ' ';
+        if(segundoesp == 0) cout << ' ';
         cout << jogadores[i].front().player << jogadores[i].front().color << jogadores[i].front().tower;
         jogadores[i].pop();
-        auxprimeiro = 0;
+        segundoesp = 0;
       }
       cout << '\n';
     }
