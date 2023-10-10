@@ -194,15 +194,11 @@ int main() {
   memset(matrix, '0', sizeof(matrix));
   int towersIndex[6] = {5, 5, 5, 5, 5, 5};
   while(size < 36) {
-    cout << "size: " << size << '\n';
     for(int i = 0; i < 4; i++) {
       char save = '0';
       int torre = jogadores[i].front().tower - 49;
       int saveTower = torre;
-      while(tabuleiro[torre].size() == 6) {
-        torre = (torre + 1) % 6;
-        cout << "torre: " << torre << '\n';
-      }
+      while(tabuleiro[torre].size() == 6 && size != 36) torre = (torre + 1) % 6;
       if(jogadores[i].front().color == 'P') {
         if(tabuleiro[saveTower].size() > 0) {
           tabuleiro[saveTower].pop();
@@ -216,14 +212,14 @@ int main() {
         matrix[towersIndex[torre]--][torre] = save;
       }
       jogadores[i].pop();
-      cout << "Tabuleiro atual:" << '\n';
-      for(int j = 0; j < 6; j++) {
-        for(int k = 0; k < 6; k++) {
-          cout << matrix[j][k] << ' ';
-        }
-        cout << '\n';
-      }
-      cout << '\n';
+      // cout << "Tabuleiro atual:" << '\n';
+      // for(int j = 0; j < 6; j++) {
+      //   for(int k = 0; k < 6; k++) {
+      //     cout << matrix[j][k] << ' ';
+      //   }
+      //   cout << '\n';
+      // }
+      // cout << '\n';
     }
   }
   int resultados[4];
