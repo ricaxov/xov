@@ -1,6 +1,6 @@
 # Virtual Every Day October
 
-Since [VEDS](https://github.com/ricaxov/xov/blob/main/training/veds.md) was kinda sucessful, I'll try to continue the project
+Since [VEDS](https://github.com/ricaxov/xov/blob/main/training/veds.md) was kinda successful, I'll try to continue the project
 
 I'll be using the [Codeforces Visualizer](https://cfviz.netlify.app/virtual-rating-change.html) to calculate the rating changes.
 
