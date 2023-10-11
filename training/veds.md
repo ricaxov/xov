@@ -2,7 +2,7 @@
 
 Got this idea after I saw [Jotinha](https://codeforces.com/profile/Jotinha) and [Huglio](https://codeforces.com/profile/huglio) doing some virtuals, so I thought I'd do the same.
 
-I'll be using the [Codeforces Visualizer](https://cfviz.netlify.app/virtual-rating-change.html) to calculate my rating changes.
+I'll be using the [Codeforces Visualizer](https://cfviz.netlify.app/virtual-rating-change.html) to calculate the rating changes.
 
 ## Day 1
 [Codeforces Round 486](https://codeforces.com/contest/988)
@@ -50,7 +50,3 @@ I'll be using the [Codeforces Visualizer](https://cfviz.netlify.app/virtual-rati
 - [ ] D - Add to Neighbour and Remove
 - [ ] E1 - Close Tuples (easy version)
 - [ ] E2 - Close Tuples (hard version)
-      
-## Day 4
-
-## Day 5
