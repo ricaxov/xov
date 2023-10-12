@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//Template (v1.0.0 - 2023-04-27) (ricaxov) {{{
+//Template (v1.5.0 - 2023-10-12) (ricaxov) {{{
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
 using namespace __gnu_pbds;
@@ -13,11 +13,11 @@ template<class X> using ordered_set = tree<X, null_type, less<X>, rb_tree_tag, t
 #define int long long
 #define fastio ios::sync_with_stdio(false); cin.tie(nullptr)
 
-template<class X> using V = vector<X>;
 template<class X> using min_priority_queue = priority_queue<X, vector<X>, greater<X>>;
 using ii = pair<int, int>;
 using iii = array<int, 3>;
 
+#define V vector
 #define all(x) x.begin(), x.end()
 #define rall(x) x.rbegin(), x.rend()
 #define sz(x) (int)x.size()
