@@ -1,6 +1,6 @@
 # Script
 
-## This is just a simple, but kinda useful, script I made to make it easier to debug my stuff
+## This is a simple, but kinda useful, script I made to make it easier to debug my stuff
 
 - To run it you just need to use this command line
 
