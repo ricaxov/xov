@@ -1,5 +1,3 @@
-# Compile and run: chmod +x script.sh && ./script.sh
-
 solve="a"
 expected="b"
 cases="c"
