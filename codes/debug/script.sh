@@ -7,21 +7,21 @@ mkdir -p output
 g++ -o "$solve" "$solve.cpp" -Wall -Wextra -pedantic -std=c++20 -O3 -Wshift-overflow=2 -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC
 if [ $? -ne 0 ]; then
   echo "Error compiling the '$solve' program."
-  mv "$solve" "output/"
   exit 1
 fi
 
 g++ -o "$expected" "$expected.cpp" -Wall -Wextra -pedantic -std=c++20 -O3 -Wshift-overflow=2 -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC
 if [ $? -ne 0 ]; then
   echo "Error compiling the '$expected' program."
-  mv "$expected" "output/"
+  mv "$solve" "output/"
   exit 1
 fi
 
 g++ -o "$cases" "$cases.cpp" -Wall -Wextra -pedantic -std=c++20 -O3 -Wshift-overflow=2 -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC
 if [ $? -ne 0 ]; then
   echo "Error compiling the '$cases' program."
-  mv "$cases" "output/"
+  mv "$solve" "output/"
+  mv "$expected" "output/"
   exit 1
 fi
 
