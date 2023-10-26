@@ -5,26 +5,23 @@ cases="cases"
 mkdir -p output
 
 g++ -o "$solve" "$solve.cpp" -Wall -Wextra -pedantic -std=c++20 -O3 -Wshift-overflow=2 -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC
-mv "$solve" "output/"
-
 if [ $? -ne 0 ]; then
   echo "Error compiling the '$solve' program."
+  mv "$solve" "output/"
   exit 1
 fi
 
 g++ -o "$expected" "$expected.cpp" -Wall -Wextra -pedantic -std=c++20 -O3 -Wshift-overflow=2 -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC
-mv "$expected" "output/"
-
 if [ $? -ne 0 ]; then
   echo "Error compiling the '$expected' program."
+  mv "$expected" "output/"
   exit 1
 fi
 
 g++ -o "$cases" "$cases.cpp" -Wall -Wextra -pedantic -std=c++20 -O3 -Wshift-overflow=2 -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC
-mv "$cases" "output/"
-
 if [ $? -ne 0 ]; then
   echo "Error compiling the '$cases' program."
+  mv "$cases" "output/"
   exit 1
 fi
 
@@ -50,3 +47,6 @@ done
 mv "output_${solve}.txt" "output/"
 mv "output_${expected}.txt" "output/"
 mv "input.txt" "output/"
+mv "$solve" "output/"
+mv "$expected" "output/"
+mv "$cases" "output/"
