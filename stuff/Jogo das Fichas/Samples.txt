@@ -57,7 +57,7 @@ V
 Mao do jogador 1: Vazia
 Mao do jogador 2: Vazia
 Mao do jogador 3: Vazia
-Mao do jogador 4: Vazia
+Mao do jogador 4: 4B5
 
 Tabuleiro final:
 V R V R R R
