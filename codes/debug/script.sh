@@ -1,6 +1,6 @@
-solve="solve"
-expected="expected"
-cases="cases"
+solve="a"
+expected="b"
+cases="c"
 
 mkdir -p output
 
