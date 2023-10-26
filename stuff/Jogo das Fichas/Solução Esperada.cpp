@@ -199,6 +199,7 @@ int main() {
       int torre = jogadores[i].front().tower - 49;
       int saveTower = torre;
       while(tabuleiro[torre].size() == 6 && size != 36) torre = (torre + 1) % 6;
+      if(size == 36) continue;
       if(jogadores[i].front().color == 'P') {
         if(tabuleiro[saveTower].size() > 0) {
           tabuleiro[saveTower].pop();
