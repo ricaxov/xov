@@ -1,9 +1,9 @@
 # Aula de DP - by ricas 😎
 
-- problemas legais:
+# [Tetrahedron](https://codeforces.com/problemset/problem/166/E)
 
-[muito facil](https://atcoder.jp/contests/dp/tasks/dp_a)
+# [Frog 1](https://atcoder.jp/contests/dp/tasks/dp_a)
 
-[facil](https://atcoder.jp/contests/dp/tasks/dp_c)
+# [Vacation](https://atcoder.jp/contests/dp/tasks/dp_c)
 
-[medio](https://codeforces.com/problemset/problem/166/E)
+# [Coins](https://atcoder.jp/contests/dp/tasks/dp_i)
