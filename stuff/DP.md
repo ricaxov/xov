@@ -6,6 +6,8 @@
 
 ## Recursão
 
+![Recursão](https://i.gifer.com/origin/54/545ab8eb59b6f6c2e9cee90c944d35eb_w200.gif)
+
 # Conceitos
 
 ## Recorrência
