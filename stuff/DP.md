@@ -1,6 +1,29 @@
 # Aula de DP - by ricas 😎
 
-# [Frog 1](https://atcoder.jp/contests/dp/tasks/dp_a)
+### Preciso revisar ainda
+
+# Pre requisitos
+
+## Recursão
+
+# Conceitos
+
+## Recorrência
+
+![Árvore](https://i.stack.imgur.com/QVSdv.png)
+
+![Recorrência](https://www.fatalerrors.org/images/blog/87a71d9c97ecc4c6d0d936adab430b04.jpg)
+
+## Estados
+
+## Transição
+
+## Casos Base
+
+
+# Problemas
+
+## [Frog 1](https://atcoder.jp/contests/dp/tasks/dp_a)
 
 ```c++
 const int INF = 1e18;
@@ -49,7 +72,7 @@ signed main() {
 }
 ```
 
-# [Vacation](https://atcoder.jp/contests/dp/tasks/dp_c)
+## [Vacation](https://atcoder.jp/contests/dp/tasks/dp_c)
 
 ```c++
 signed main() {
@@ -101,7 +124,7 @@ signed main() {
 }
 ```
 
-# [Coins](https://atcoder.jp/contests/dp/tasks/dp_i)
+## [Coins](https://atcoder.jp/contests/dp/tasks/dp_i)
 
 ```c++
 signed main() {
@@ -155,7 +178,7 @@ signed main() {
 }
 ```
 
-# [Minimizing Coins](https://cses.fi/problemset/task/1634/)
+## [Minimizing Coins](https://cses.fi/problemset/task/1634/)
 
 ```c++
 const int INF = 1e9;
