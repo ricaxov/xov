@@ -165,17 +165,17 @@ signed main() {
   vector<int> V(N);
   for(auto &i : V) cin >> i;
 
-  vector<int> DP(m + 1, INF);
+  vector<int> DP(M + 1, INF);
   DP[0] = 0;
   
-  for(int i = 0; i < n; i++) {
-    for(int j = 0; j <= m; j++) {
-      if(j + v[i] <= m) {
-        DP[j + v[i]] = min(DP[j + v[i]], DP[j] + 1);
+  for(int i = 0; i < N; i++) {
+    for(int j = 0; j <= M; j++) {
+      if(j + V[i] <= M) {
+        DP[j + V[i]] = min(DP[j + V[i]], DP[j] + 1);
       }
     }
   }
 
-  cout << (DP[m] == INF ? -1 : DP[m]) << '\n';
+  cout << (DP[M] == INF ? -1 : DP[M]) << '\n';
 }
 ```
