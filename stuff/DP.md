@@ -1,50 +1,58 @@
 # Aula de DP - by xov 😎
 
+## Pré-requisitos
+
+> $Recursão$
+>
+> ![Percurso](https://b2316719.smushcdn.com/2316719/wp-content/uploads/2022/11/dfs_animated-1.gif?size=1200x693&lossy=1&strip=1&webp=1)
+
+> $Recorrência$
+>
+>![Árvore](https://i.stack.imgur.com/QVSdv.png)
+>
+>![Recorrência](https://www.fatalerrors.org/images/blog/87a71d9c97ecc4c6d0d936adab430b04.jpg)
+
 ## Vocabulário
 
-> **Estados:** Informações importantes que devem ser salvas. <br>
-$DP[i][j] \ mantem \ a resposta \ para \ o \ nosso \ problema, \ onde:$ <br>
-$i = qual \ elemento \ está \ sendo \ avaliado$ <br>
-$j = a \ capacidade \ de \ armazenamento \ restante$
+> $Estados: \ Partes \ importantes \ do \ problema \ que \ devem \ ser \ salvas.$
+>
+> $DP[i][j] \ mantem \ a \ resposta \ para \ o \ nosso \ problema, \ onde:$ <br>
+> $i = qual \ elemento \ está \ sendo \ avaliado$ <br>
+> $j = a \ capacidade \ de \ armazenamento \ restante$
 
-<!-- continuar a partir daqui -->
-> **Transições:** Interação entre os Estados. <br>
-$DP[i][j] = DP[i - 1][j]$ <br>
-$DP[i][j] = max(DP[i][j], \ DP[i][j - C[i - 1]] + P[i - 1]), \ para \ j \ >= C[i - 1]$
+> $Transi$ç$ões: \ Intera$ç$ão \ entre \ os \ Estados.$ <br>
+>
+> $DP[i][j] = DP[i - 1][j]$ <br>
+> $DP[i][j] = max(DP[i][j], \ DP[i - 1][j - C[i - 1]] + P[i - 1]), \ para \ j \ >= C[i - 1]$
 
-> **Casos Base:** <br>
+> $Casos \ Base: \ Caso \ com \ resposta \ conhecida.$<br>
+>
+> $DP[i][0] = 0$ <br>
+> $DP[0][j] = 0$
 
-<br>
-<br>
+## Estilos de DP:
 
-> Push DP
-> Pull DP
+> $Top-Down:$ <br>
+>
+> - $Memoization$
+> - $Recursivo$
+> - $Armazena \ os \ subproblemas \ para \ evitar \ recálculo$
 
-# Pre requisitos
+> $Bottom-Up:$ <br>
+>
+> - $Tabulation$
+> - $Iterativo$
+> - $Resolver \ os \ subproblemas \ menores \ e \ acumula \ as \ respostas \ ate chegar \ no \ problema \ como \ um \ todo$
 
-## Recursão
-![Traverse](https://b2316719.smushcdn.com/2316719/wp-content/uploads/2022/11/dfs_animated-1.gif?size=1200x693&lossy=1&strip=1&webp=1)
-
-![Recursão](https://i.gifer.com/origin/54/545ab8eb59b6f6c2e9cee90c944d35eb_w200.gif)
-
-# Conceitos
-
-## Recorrência
-
-![Árvore](https://i.stack.imgur.com/QVSdv.png)
-
-![Recorrência](https://www.fatalerrors.org/images/blog/87a71d9c97ecc4c6d0d936adab430b04.jpg)
-
-## Estados
-
-## Transição
-
-## Casos Base
+## Curiosidade:
+> $Push \ DP: \ DP[i + 1] = DP[i]$ <br>
+> $Pull \ DP: \ DP[i] = DP[i - 1]$
 
 
-# Problemas
 
-## [Frog 1](https://atcoder.jp/contests/dp/tasks/dp_a)
+## Problemas
+
+### [Frog 1](https://atcoder.jp/contests/dp/tasks/dp_a)
 
 ```c++
 const int INF = 1e18;
@@ -93,7 +101,7 @@ signed main() {
 }
 ```
 
-## [Vacation](https://atcoder.jp/contests/dp/tasks/dp_c)
+### [Vacation](https://atcoder.jp/contests/dp/tasks/dp_c)
 
 ```c++
 signed main() {
@@ -145,61 +153,64 @@ signed main() {
 }
 ```
 
-## [Coins](https://atcoder.jp/contests/dp/tasks/dp_i)
+### [Knapsack 1](https://atcoder.jp/contests/dp/tasks/dp_d)
 
 ```c++
 signed main() {
-  int N; cin >> N;
-
-  vector<double> P(N);
-  for(auto &i : P) cin >> i;
-
-  vector<vector<double>> DP(N + 1, vector<double>(N + 1));
-  DP[0][0] = 1.0;
-
+  int N, W; cin >> N >> W;
+  vector<int> C(N), P(N);
   for(int i = 0; i < N; i++) {
-    for(int j = 0; j < N; j++) {
-      DP[i + 1][j] += DP[i][j] * (1.0 - P[i]);
-      DP[i + 1][j + 1] += DP[i][j] * P[i];
+    cin >> C[i] >> P[i];
+  }
+
+  vector<vector<int>> DP(N + 1, vector<int>(W + 1));
+  
+  for(int i = 0; i <= N; i++) DP[i][0] = 0;
+  for(int i = 0; i <= W; i++) DP[0][i] = 0;
+
+  for(int i = 1; i <= N; i++) {
+    for(int j = 1; j <= W; j++) {
+      DP[i][j] = DP[i - 1][j];
+      if(j >= C[i - 1]) {
+        DP[i][j] = max(DP[i][j], DP[i - 1][j - C[i - 1]] + P[i - 1]);
+      }
     }
   }
 
-  double ans = 0;
-  for(int i = N; i >= (N + 1) / 2; i--) {
-    ans += DP[N][i];
-  }
-
-  cout.precision(10);
-  cout.setf(ios::fixed);
-  cout << ans << '\n';
+  cout << DP[N][W] << '\n';
 }
 ```
 
 ```c++
-int N;
-vector<double> P;
-vector<vector<double>> DP;
+int N, W;
+vector<int> C, P;
+vector<vector<int>> DP;
 
-double f(int i, int j) {
-  if(j >= (N + 1) / 2) return 1.0;
-  if(i == N) return 0.0;
-  if(DP[i][j] != -1) return DP[i][j];
-  return DP[i][j] = f(i + 1, j) * (1.0 - P[i]) + f(i + 1, j + 1) * P[i];
+int f(int cur, int qnt) {
+  if(cur == N || qnt == 0) return 0;
+  if(DP[cur][qnt] != -1) return DP[cur][qnt];
+
+  int ans = f(cur + 1, qnt);
+  if(qnt >= C[cur]) {
+    ans = max(ans, f(cur + 1, qnt - C[cur]) + P[cur]);
+  }
+
+  return DP[cur][qnt] = ans;
 }
-signed main() {
-  cin >> N;
-
-  DP.assign(N + 1, vector<double>(N + 1, -1)), P.resize(N);
+signed main() {   
+  cin >> N >> W;
   
-  for(auto &i : P) cin >> i;
+  C.resize(N), P.resize(N);
+  DP.assign(N + 1, vector<int>(W + 1, -1));
+  for(int i = 0; i < N; i++) {
+    cin >> C[i] >> P[i];
+  }
 
-  cout.precision(10);
-  cout.setf(ios::fixed);
-  cout << f(0, 0) << '\n';
+  cout << f(0, W) << '\n';
 }
 ```
 
-## [Minimizing Coins](https://cses.fi/problemset/task/1634/)
+### [Minimizing Coins](https://cses.fi/problemset/task/1634/)
 
 ```c++
 const int INF = 1e9;
