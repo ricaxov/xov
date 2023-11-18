@@ -1,10 +1,29 @@
-# Aula de DP - by ricas 😎
+# Aula de DP - by xov 😎
 
-### Preciso revisar ainda
+## Vocabulário
+
+> **Estados:** Informações importantes que devem ser salvas. <br>
+$DP[i][j] \ mantem \ a resposta \ para \ o \ nosso \ problema, \ onde:$ <br>
+$i = qual \ elemento \ está \ sendo \ avaliado$ <br>
+$j = a \ capacidade \ de \ armazenamento \ restante$
+
+<!-- continuar a partir daqui -->
+> **Transições:** Interação entre os Estados. <br>
+$DP[i][j] = DP[i - 1][j]$ <br>
+$DP[i][j] = max(DP[i][j], \ DP[i][j - C[i - 1]] + P[i - 1]), \ para \ j \ >= C[i - 1]$
+
+> **Casos Base:** <br>
+
+<br>
+<br>
+
+> Push DP
+> Pull DP
 
 # Pre requisitos
 
 ## Recursão
+![Traverse](https://b2316719.smushcdn.com/2316719/wp-content/uploads/2022/11/dfs_animated-1.gif?size=1200x693&lossy=1&strip=1&webp=1)
 
 ![Recursão](https://i.gifer.com/origin/54/545ab8eb59b6f6c2e9cee90c944d35eb_w200.gif)
 
