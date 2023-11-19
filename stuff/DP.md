@@ -42,7 +42,7 @@
 >
 > - $Tabulation$
 > - $Iterativo$
-> - $Resolver \ os \ subproblemas \ menores \ e \ acumula \ as \ respostas \ ate chegar \ no \ problema \ como \ um \ todo$
+> - $Resolver \ os \ subproblemas \ menores \ e \ acumula \ as \ respostas \ ate \ chegar \ no \ problema \ como \ um \ todo$
 
 ## Curiosidade:
 > $Push \ DP: \ DP[i + 1] = DP[i]$ <br>
