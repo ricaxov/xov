@@ -20,7 +20,7 @@
 > $i = qual \ elemento \ está \ sendo \ avaliado$ <br>
 > $j = a \ capacidade \ de \ armazenamento \ restante$
 
-> $Transi$ç$ões: \ Intera$ç$ão \ entre \ os \ Estados.$ <br>
+> $Transições: \ Interação \ entre \ os \ Estados.$ <br>
 >
 > $DP[i][j] = DP[i - 1][j]$ <br>
 > $DP[i][j] = max(DP[i][j], \ DP[i - 1][j - C[i - 1]] + P[i - 1]), \ para \ j \ >= C[i - 1]$
