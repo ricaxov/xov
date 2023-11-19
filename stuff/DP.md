@@ -213,24 +213,24 @@ signed main() {
 ### [Minimizing Coins](https://cses.fi/problemset/task/1634/)
 
 ```c++
-const int INF = 1e9;
+const int INF = 1e18;
  
 signed main() {
-  int N, M; cin >> N >> M;
-  vector<int> V(N);
-  for(auto &i : V) cin >> i;
-
-  vector<int> DP(M + 1, INF);
+  int N, W; cin >> N >> W;
+  vector<int> v(N);
+  for(auto &i : v) cin >> i;
+ 
+  vector<int> DP(W + 1, INF);
   DP[0] = 0;
-  
-  for(int i = 0; i < N; i++) {
-    for(int j = 0; j <= M; j++) {
-      if(j + V[i] <= M) {
-        DP[j + V[i]] = min(DP[j + V[i]], DP[j] + 1);
+ 
+  for(int i = 0; i <= W; i++) {
+    for(int j = 0; j < N; j++) {
+      if(i + v[j] <= W) {
+        DP[i + v[j]] = min(DP[i + v[j]], DP[i] + 1);
       }
     }
   }
-
-  cout << (DP[M] == INF ? -1 : DP[M]) << '\n';
+ 
+  cout << (DP[W] == INF ? -1 : DP[W]) << '\n';
 }
 ```
