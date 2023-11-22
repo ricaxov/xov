@@ -22,9 +22,9 @@ using iii = array<int, 3>;
 #define rall(x) x.rbegin(), x.rend()
 #define sz(x) (int)x.size()
 #define pb push_back
-#define pb push_front
+#define pf push_front
 #define eb emplace_back
-#define eb emplace_front
+#define ef emplace_front
 #define ff first
 #define ss second
 #define purr =^._.^=
@@ -63,5 +63,5 @@ template<typename X, typename...Y> void dbg(X x, Y...y) { cerr << " " << x; dbg(
 
 auto main() -> signed {
   fastio;
-  
+
 }
