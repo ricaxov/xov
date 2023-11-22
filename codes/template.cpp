@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//Template (v1.5.0 - 2023-10-12) (ricaxov) {{{
+//Template (v1.5.1 - 22/11/2023) (ricaxov) {{{
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
 using namespace __gnu_pbds;
@@ -25,7 +25,9 @@ using iii = array<int, 3>;
 #define eb emplace_back
 #define ff first
 #define ss second
-#define xov "┌( ಠ_ಠ)┘"
+#define purr =^._.^=
+#define loop(i, l, r) for(int i = l; i <= r; i++)
+#define pool(i, r, l) for(int i = r; i >= l; i--)
 #define mem(x, y) memset(x, y, sizeof(x))
 #define inbounds(x, l, r) (l <= x && x <= r)
 #define fillin freopen("in.txt", "r", stdin)
