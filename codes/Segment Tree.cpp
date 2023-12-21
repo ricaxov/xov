@@ -1,27 +1,73 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int long long
+
+// Segment Tree - v.0.5.0 {{{
 template<typename T>
 class SegmentTree {
+private:
   int N;
-  vector<T> SEG;
+  vector<T> A, S, L;
+  T neutral, unmarked;
 public:
-  explicit SegmentTree(vector<T> const& V) : N(size(V)), SEG(2 * N) {
+  explicit SegmentTree(int N, T const& neutral, T const& unmarked) : N(N), S(4 * N), L(4 * N, unmarked), neutral(neutral), unmarked(unmarked) {}
+  explicit SegmentTree(vector<T> A, T const& neutral, T const& unmarked) : N(size(A)), A(A), S(4 * N), L(4 * N, unmarked), neutral(neutral), unmarked(unmarked) { 
     for(int i = 0; i < N; i++) {
-      SEG[i + N] = V[i];
+      set(i, i, A[i]);
     }
-    for(int i = N - 1; i > 0; i--) {
-      SEG[i] = min(SEG[2 * i], SEG[2 * i + 1]);
+  } 
+
+  void apply(int p, int l, int r) {
+    if(L[p] != unmarked) {
+      // S[p] = L[p];
+      if (l != r) {
+        // L[2 * p] = L[p];
+        // L[2 * p + 1] = L[p];
+      }
+      L[p] = unmarked;
     }
   }
-  void set(int p, T value) {
-    for(SEG[p += N] = value, p /= 2; p > 0; p /= 2) {
-      SEG[p] = min(SEG[2 * p], SEG[2 * p + 1]);
-    }
+
+  T get(int a, int b, int p, int l, int r) {
+    apply(p, l, r);
+    if(a <= l && r <= b) return S[p];
+    if(b < l || r < a) return neutral;
+    return get(a, b, 2 * p, l, midpoint(l, r)) + get(a, b, 2 * p + 1, midpoint(l, r) + 1, r);
   }
-  T min(int l, int r) {
-    T res = 1e18;
-    for(l += N, r += N + 1; l < r; l /= 2, r /= 2) {
-      if(l % 2 != 0) res = min(res, SEG[l++]);
-      if(r % 2 != 0) res = min(res, SEG[--r]);
+
+  T set(int a, int b, T const& x, int p, int l, int r) {
+    apply(p, l, r);
+    if(a <= l && r <= b) {
+      L[p] = x;
+      apply(p, l, r);
+      return S[p];
     }
-    return res;
+    if(b < l || r < a) return S[p];
+    return S[p] = set(a, b, x, 2 * p, l, midpoint(l, r)) + set(a, b, x, 2 * p + 1, midpoint(l, r) + 1, r);
+  }
+
+  T get(int a, int b) { return get(a, b, 1, 0, N - 1); }
+  T set(int a, int b, T const& x) { return set(a, b, x, 1, 0, N - 1); }
+};
+//}}}
+
+struct Node {
+  int A;
+  Node() : A(0) {}
+  Node(int A) : A(A) {}
+  Node operator + (Node N) const {
+    return A + N.A;
+  }
+  bool operator != (Node N) const {
+    return A != N.A;
   }
 };
+
+const Node neutral, unmarked;
+
+// auto main() -> signed {
+//   ios_base::sync_with_stdio(false); cin.tie(nullptr);
+
+
+// }
