@@ -6,11 +6,11 @@
 - Obviously I'm not planning on becoming red all of a sudden, but making the problems have an average count of fifty sounds very nice
 <br>
 
-**This is where I am now:**
+## **This is where I am now:**
 ![xov](https://github.com/ricaxov/xov/assets/103327245/26434b44-72b2-42b0-bc7b-3cbd052040be)
 <br><br>
 
-**This is where I wanna be:**
+## **This is where I wanna be:**
 ![qrno](https://github.com/ricaxov/xov/assets/103327245/4e97f3e3-cc88-41c6-a471-988d824d8778)
 <br><br>
 
