@@ -1,9 +1,9 @@
 # Summer Training 🌞
 
 ## Description
-- I intend on doing some problems of stuff I don't know enough or don't know at all and see if this can make me improve
-- I also have a thoery that by doing more Codeforces problems we'll see some improvement
-- Obviously I'm not planning on becoming red all of a sudden, but making the problems have an average count of fiftyish sounds very nice
+- I intend on solving some problems of stuff I don't know enough about and see if this can make me improve
+- I also have a theory that by doing more Codeforces problems I'll see some improvement
+- Obviously I'm not planning on becoming red all of a sudden, but making the problems have an average count of fifty sounds very nice
 <br>
 
 **This is where I am now:**
@@ -18,9 +18,12 @@
 
 ### Segment Tree Saga
 ---
+
 ### Centroid Decomposition Saga
 ---
+
 ### Reroot Saga
 ---
+
 ### ... Saga
 ---
