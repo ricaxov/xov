@@ -17,6 +17,7 @@
 ## Progress by topic
 
 ### Segment Tree Saga
+- [X] [Xenia and Bit Operations](https://codeforces.com/contest/339/problem/D)
 ---
 
 ### Centroid Decomposition Saga
