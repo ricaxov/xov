@@ -3,6 +3,15 @@ using namespace std;
 
 #define int long long
 
+/*
+
+A ultima versao disso daqui ta no meu codeforces
+coisas que eu acho que eu posso melhorar é fazer uma versao com lazy e sem lazy
+
+tirar as duas ultimas funcoes, declarar os trem global
+
+pra falar a verdade acho que eu preciso de inspiracao
+*/
 // Segment Tree - v.0.5.0 {{{
 template<typename T>
 class SegmentTree {
