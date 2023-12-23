@@ -17,7 +17,10 @@
 ## Progress by topic
 
 ### Segment Tree Saga
+- Just as a note for later: I want to write a little description about the problems to make sure the solutions are as clear as possible to me, but I'll do this later since the focus of now is doing as most as possible
+  
 - [X] [Xenia and Bit Operations](https://codeforces.com/contest/339/problem/D)
+- [X] [Sereja and Brackets](https://codeforces.com/contest/380/problem/C)
 ---
 
 ### Centroid Decomposition Saga
