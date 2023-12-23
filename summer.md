@@ -22,12 +22,16 @@
 
 - [X] [Xenia and Bit Operations](https://codeforces.com/contest/339/problem/D)
   > Pretty basic, just take the OR / XOR based on the curent level of the tree.
+  
 - [X] [Sereja and Brackets](https://codeforces.com/contest/380/problem/C)
   > Had already done a very similar problem, just count the number of pairs of "()" and multiply by two.
+  
 - [X] [Circular RMQ](https://codeforces.com/contest/52/problem/C)
   > The problem itself is very straightforward, but the input sucks. Nonetheless a cool problem, made me get a better grasp of Lazy Propagation.
+  
 - [X] [XOR on Segment](https://codeforces.com/contest/242/problem/E)
   > Hardest problem I did today, had to look at the editorial for this one. Turns out it was a Segment Tree for every bit of every number.
+  
 ---
 
 ### Centroid Decomposition Saga
