@@ -23,6 +23,7 @@
 - [X] [Xenia and Bit Operations](https://codeforces.com/contest/339/problem/D)
 - [X] [Sereja and Brackets](https://codeforces.com/contest/380/problem/C)
 - [X] [Circular RMQ](https://codeforces.com/contest/52/problem/C)
+- [X] [XOR on Segment](https://codeforces.com/contest/242/problem/E) 
 ---
 
 ### Centroid Decomposition Saga
