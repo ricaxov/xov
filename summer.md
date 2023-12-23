@@ -1,8 +1,7 @@
 # Summer Training 🌞
 
 ## Description
-- (I'll rewrite everything later, cause it seems kinda bad 😥)
-- I intend on solving some problems of stuff I don't know enough about and see if this can make me improve
+- I intend on solving some problems and see if this can make me improve
 - I also have a theory that by doing more Codeforces problems I'll see some improvement
 - Obviously I'm not planning on becoming red all of a sudden, but making the problems have an average count of fifty sounds very nice
 <br>
@@ -18,12 +17,18 @@
 ## Progress by topic
 
 ### Segment Tree Saga
-- Just as a note for later: I want to write a little description about the problems to make sure the solutions are as clear as possible to me, but I'll do this later since the focus of now is doing as most as possible
-  
+
+#### 22/12/2023
+
 - [X] [Xenia and Bit Operations](https://codeforces.com/contest/339/problem/D)
+  > Pretty basic, just take the OR / XOR based on the curent level of the tree.
+
 - [X] [Sereja and Brackets](https://codeforces.com/contest/380/problem/C)
+  > Had already done a very similar problem, just count the number of pairs of "()" and multiply by two.
 - [X] [Circular RMQ](https://codeforces.com/contest/52/problem/C)
-- [X] [XOR on Segment](https://codeforces.com/contest/242/problem/E) 
+  > The problem itself is very straightforward, but the input sucks. Nonetheless a cool problem, made me get a better grasp of Lazy Propagation.
+- [X] [XOR on Segment](https://codeforces.com/contest/242/problem/E)
+  > Hardest problem I did today, had to look at the editorial for this one. Turns out It was a Segment Tree for every bit of every number.
 ---
 
 ### Centroid Decomposition Saga
