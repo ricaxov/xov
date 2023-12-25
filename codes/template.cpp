@@ -18,9 +18,9 @@ using ii = pair<int, int>;
 using iii = array<int, 3>;
 
 #define V vector
-#define all(X) begin(X), end(X)
-#define rall(X) rbegin(X), rend(X)
-#define sz(X) (int)size(X)
+#define all(x) begin(x), end(x)
+#define rall(x) rbegin(x), rend(x)
+#define sz(x) (int)size(x)
 #define pb push_back
 #define pf push_front
 #define eb emplace_back
@@ -55,12 +55,11 @@ template<class X, class Y> auto& operator << (ostream& os, unordered_map<X, Y> c
 template<class...X> void in(X &...x) { ((cin >> x), ...); }
 template<class...X> void out(X const&...x) { auto sep = ""; ((cout << sep << x, sep = " "), ...); cout << "\n"; }
 template<class...X> void print(X const&...x) { ((cout << x), ...); }
-#define var(X) "[", #X, " = ", X, "]"
-template<class... X> void dbg(X const&...x) { ((cout << x), ...); cout << "\n"; }
+#define var(x) "[", #x, " = ", x, "]"
+template<class...X> void dbg(X const&...x) { ((cout << x), ...); cout << "\n"; }
 //}}}
 
 auto main() -> signed {
   fastio;
-  
-  
+   
 }
