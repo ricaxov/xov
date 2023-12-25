@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//Template (v1.5.1 - 22/11/2023) (ricaxov) {{{
+//Template (v1.5.2 - 25/12/2023) (ricaxov) {{{
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
 using namespace __gnu_pbds;
@@ -18,9 +18,9 @@ using ii = pair<int, int>;
 using iii = array<int, 3>;
 
 #define V vector
-#define all(x) x.begin(), x.end()
-#define rall(x) x.rbegin(), x.rend()
-#define sz(x) (int)x.size()
+#define all(X) begin(X), end(X)
+#define rall(X) rbegin(X), rend(X)
+#define sz(X) (int)size(X)
 #define pb push_back
 #define pf push_front
 #define eb emplace_back
@@ -55,13 +55,12 @@ template<class X, class Y> auto& operator << (ostream& os, unordered_map<X, Y> c
 template<class...X> void in(X &...x) { ((cin >> x), ...); }
 template<class...X> void out(X const&...x) { auto sep = ""; ((cout << sep << x, sep = " "), ...); cout << "\n"; }
 template<class...X> void print(X const&...x) { ((cout << x), ...); }
-
-void dbg() { cerr << "\n"; }
-template<typename X, typename...Y> void dbg(X x, Y...y) { cerr << " " << x; dbg(y...); }
-#define debug(...) cerr << "(" << #__VA_ARGS__ << "):", dbg(__VA_ARGS__), cerr << "\n"
+#define var(X) "[", #X, " = ", X, "]"
+template<class... X> void dbg(X const&...x) { ((cout << x), ...); cout << "\n"; }
 //}}}
 
 auto main() -> signed {
   fastio;
-
+  
+  
 }
