@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>xovtistics</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div id="profile" for="displaying the information gotten by the codeforces API">
+  
+  </div>
+  <script for="getting information from the codeforces API">
+    function profile_info() {
+      const handle = "Jotinha";
+      const url = `https://codeforces.com/api/user.info?handles=${handle}`;
+      
+      axios.get(url).then(function(response) {
+        const user = response.data.result[0]
+        
+        const rankColors = {
+          "newbie": "gray",
+          "pupil": "green",
+          "specialist": "cyan",
+          "expert": "blue",
+          "candidate-master": "purple",
+        };
+        
+        const backgroundColor = rankColors[user.rank] || "white";
+        document.getElementById("profile").style.backgroundColor = backgroundColor;
+
+        const resultadoHTML = `
+          <h2>${user.firstName} ${user.lastName}</h2>
+          <p><img src="${user.titlePhoto}" alt="Foto do Perfil"></p>
+          <p>Country: ${user.country}</p>
+          <p>Friends: ${user.friendOfCount}</p>
+          <p>Organization: ${user.organization}</p>
+          <p>Rank: ${user.rank}</p>
+        `;
+
+        document.getElementById("profile").innerHTML = resultadoHTML;
+      }).catch(function(error){
+        console.error("Error:", error);
+      })
+    }
+    profile_info();
+  </script>
+</body>
+</html>
