@@ -18,8 +18,6 @@
 
 ### Segment Tree Saga
 
-#### 22/12/2023
-
 - [X] [Xenia and Bit Operations](https://codeforces.com/contest/339/problem/D)
   > Pretty basic, just take the OR / XOR based on the curent level of the tree.
   
@@ -32,6 +30,15 @@
 - [X] [XOR on Segment](https://codeforces.com/contest/242/problem/E)
   > Hardest problem I did today, had to look at the editorial for this one. Turns out it was a Segment Tree for every bit of every number.
   
+---
+
+### Meet in the Middle Saga
+- [X] [Meet in the Middle](https://cses.fi/problemset/task/1628)
+  > Just a very simple problem to get a grasp of the Meet in the Middle technique.
+
+- [X] [Maximum Subsequence](https://codeforces.com/contest/888/problem/E)
+  > Very similar to the first problem, just divide the problem into two halves and merge them using binary search.
+
 ---
 
 ### Centroid Decomposition Saga
