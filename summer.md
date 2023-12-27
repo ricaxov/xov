@@ -39,6 +39,9 @@
 - [X] [Maximum Subsequence](https://codeforces.com/contest/888/problem/E)
   > Very similar to the first problem, just divide the problem into two halves and merge them using binary search.
 
+- [X] [Xor-Paths](https://codeforces.com/contest/1006/problem/F)
+  > Need to write about it latter. (very cool problem)
+
 ---
 
 ### Centroid Decomposition Saga
