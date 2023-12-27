@@ -40,7 +40,7 @@
   > Very similar to the first problem, just divide the problem into two halves and merge them using binary search.
 
 - [X] [Xor-Paths](https://codeforces.com/contest/1006/problem/F)
-  > Need to write about it latter. (very cool problem)
+  > Already had done a similar problem on AtCoder, just used Meet in the Middle with a BFS / DFS to find the xor paths inside a matrix.
 
 ---
 
