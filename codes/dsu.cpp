@@ -7,8 +7,8 @@ struct DSU {
     return P[v] = leader(P[v]);
   }
   int merge(int a, int b) {
-    if(same(a, b) == 0) {
-      a = leader(a), b = leader(b);
+    a = leader(a), b = leader(b);
+    if(a != b) {
       if(S[a] < S[b]) swap(a, b);
       P[b] = a, S[a] += S[b];
     }
