@@ -1,15 +1,20 @@
+// DSU {{{
 struct DSU {
-  vector<int> p, s;
-  DSU(int n) : p(n, -1), s(n, 1) {};
-  int find(int v) {
-    if(p[v] == -1) return v;
-    return p[v] = find(p[v]);
+  vector<int> P, S;
+  explicit DSU(int N) : P(N, -1), S(N, 1) {};
+  int leader(int v) {
+    if(P[v] == -1) return v;
+    return P[v] = leader(P[v]);
   }
-  void join(int a, int b) {
-    a = find(a), b = find(b);
-    if(a != b) {
-      if(s[a] < s[b]) swap(a, b);
-      p[b] = a, s[a] += s[b];
+  int merge(int a, int b) {
+    if(same(a, b) == 0) {
+      if(S[a] < S[b]) swap(a, b);
+      P[b] = a, S[a] += S[b];
     }
+    return a;
+  }
+  bool same(int a, int b) {
+    return leader(a) == leader(b);
   }
 };
+//}}}
