@@ -44,11 +44,22 @@
 
 ---
 
-### Centroid Decomposition Saga
+### Mathematics Saga
+- [X] [Ira and Flamenco](https://codeforces.com/contest/1833/problem/F)
+  > Just some combinatorics with prefix sum and binary search.
+
+- [X] [Lucky Chains](https://codeforces.com/contest/1766/problem/D)
+  > A somewhat hard problem about number theory, had to ask gustavoleal for some help for this one.
+
+- [X] [Parking Lot](https://codeforces.com/contest/630/problem/I)
+  > Just some basic combinatorics concepts.
+
 ---
 
-### Reroot Saga
----
+## Virtuals 
 
-### ... Saga
----
+### Codeforces Round XXX
+- some description
+
+### Codeforces Round YYY
+- some description
