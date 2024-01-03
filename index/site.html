@@ -11,40 +11,54 @@
   <div id="profile" for="displaying the information gotten by the codeforces API">
   
   </div>
-  <script for="getting information from the codeforces API">
+  <script>
     function profile_info() {
-      const handle = "Jotinha";
-      const url = `https://codeforces.com/api/user.info?handles=${handle}`;
-      
-      axios.get(url).then(function(response) {
-        const user = response.data.result[0]
-        
-        const rankColors = {
-          "newbie": "gray",
-          "pupil": "green",
-          "specialist": "cyan",
-          "expert": "blue",
-          "candidate-master": "purple",
-        };
-        
-        const backgroundColor = rankColors[user.rank] || "white";
-        document.getElementById("profile").style.backgroundColor = backgroundColor;
-
-        const resultadoHTML = `
-          <h2>${user.firstName} ${user.lastName}</h2>
-          <p><img src="${user.titlePhoto}" alt="Foto do Perfil"></p>
-          <p>Country: ${user.country}</p>
-          <p>Friends: ${user.friendOfCount}</p>
-          <p>Organization: ${user.organization}</p>
-          <p>Rank: ${user.rank}</p>
-        `;
-
-        document.getElementById("profile").innerHTML = resultadoHTML;
-      }).catch(function(error){
-        console.error("Error:", error);
-      })
+      const handle = "ricaxov";
+      const userUrl = `https://codeforces.com/api/user.info?handles=${handle}`;
+      const problemsUrl = `https://codeforces.com/api/user.status?handle=${handle}&count=10`;
+  
+      axios.get(userUrl)
+        .then(function (userResponse) {
+          const user = userResponse.data.result[0];
+          const resultadoHTML = `
+            <h2>${user.firstName} ${user.lastName}</h2>
+            <p><img src="${user.titlePhoto}"></p>
+            <p>Country: ${user.country}</p>
+            <p>Friends: ${user.friendOfCount}</p>
+            <p>Organization: ${user.organization}</p>
+            <p>Rank: ${user.rank}</p>
+            <p>Rating: ${user.rating}</p>
+          `;
+          document.getElementById("profile").innerHTML = resultadoHTML;
+  
+          return axios.get(problemsUrl);
+        })
+        .then(function (problemsResponse) {
+          const problems = problemsResponse.data.result;
+          let resultado = '<h2>Last 10 Problems:</h2>';
+  
+          for (let i = 0; i < problems.length; i++) {
+            const problem = problems[i];
+            const submissionLink = `https://codeforces.com/contest/${problem.problem.contestId}/submission/${problem.id}`;
+            resultado += `
+              <div>
+                <p><strong>Problem ${i + 1}:</strong> ${problem.problem.name}</p>
+                <p>Verdict: ${problem.verdict}</p>
+                <p>Time Consumed: ${problem.timeConsumedMillis} ms</p>
+                <p>Submission Link: <a href="${submissionLink}" target="_blank">View Submission</a></p>
+                <hr>
+              </div>
+            `;
+          }
+  
+          document.getElementById("profile").innerHTML += resultado;
+        })
+        .catch(function (error) {
+          console.error("Error:", error);
+        });
     }
     profile_info();
   </script>
+  
 </body>
 </html>
