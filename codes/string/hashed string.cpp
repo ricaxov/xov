@@ -7,7 +7,6 @@ struct HashedString {
   int N;
   string S;
   vector<int> H1, P1, H2, P2;
- 
   explicit HashedString() : N(0) {}
   explicit HashedString(string const& S) : N(size(S)), S(S), H1(N, S[0]), P1(N, 1), H2(N, S[0]), P2(N, 1) {
     for(int i = 1; i < N; i++) {
