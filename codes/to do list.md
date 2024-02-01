@@ -1,12 +1,12 @@
 # Things that I still need to fix
 
 - [ ] Mint
-- [ ] DSU
+- [X] DSU
 - [ ] Segment Tree
 - [ ] Combinatorics
 - [ ] Tour
 - [ ] Flow
-- [ ] Hash
+- [X] Hash
 - [ ] Hull
 - [ ] Fexp
 - [ ] Matrix Fexp
