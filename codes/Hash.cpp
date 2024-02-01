@@ -1,30 +1,25 @@
-const long long mod1 = 1000015553, mod2 = 1000028537;
-mt19937 rng((int) chrono::steady_clock::now().time_since_epoch().count());
-static long long base1 = uniform_int_distribution<int>(356, mod1 - 1)(rng);
-static long long base2 = uniform_int_distribution<int>(356, mod2 - 1)(rng);
+const int M1 = 1000015553, M2 = 1000028537;
+mt19937 rng((int)chrono::steady_clock::now().time_since_epoch().count());
+const int B1 = uniform_int_distribution<int>(356, M1 - 1)(rng), B2 = uniform_int_distribution<int>(356, M2 - 1)(rng);
  
+// Hashed String {{{ 
 struct HashedString {
-  string s; 
-  long long n;
-  vector<long long> hsh1, pwr1, hsh2, pwr2;
+  int N;
+  string S;
+  vector<int> H1, P1, H2, P2;
  
-  HashedString() : n(0) {}
-  HashedString(string s) : n((int)s.size()), s(s), hsh1(n), pwr1(n), hsh2(n), pwr2(n) {	
-    pwr1[0] = pwr2[0] = 1;
-    for (int i = 1; i < n; i++) {
-      pwr1[i] = (base1 * pwr1[i - 1]) % mod1;
-      pwr2[i] = (base2 * pwr2[i - 1]) % mod2;
-    }
-    hsh1[0] = hsh2[0] = s[0];
-    for(int i = 1; i < n; i++) {
-      hsh1[i] = (hsh1[i - 1] * base1 + (long long)(s[i])) % mod1;
-      hsh2[i] = (hsh2[i - 1] * base2 + (long long)(s[i])) % mod2;
+  explicit HashedString() : N(0) {}
+  explicit HashedString(string const& S) : N(size(S)), S(S), H1(N, S[0]), P1(N, 1), H2(N, S[0]), P2(N, 1) {
+    for(int i = 1; i < N; i++) {
+      P1[i] = (P1[i - 1] * B1) % M1, P2[i] = (P2[i - 1] * B2) % M2;
+      H1[i] = (H1[i - 1] * B1 + S[i]) % M1, H2[i] = (H2[i - 1] * B2 + S[i]) % M2;
     }
   }
-  long long hash(int i, int j) {
-    if (i == 0) return (hsh1[j] << 30) ^ (hsh2[j]);
-    long long ret1 = ((hsh1[j] - (hsh1[i - 1] * pwr1[j - i + 1])) % mod1 + mod1) % mod1;
-    long long ret2 = ((hsh2[j] - (hsh2[i - 1] * pwr2[j - i + 1])) % mod2 + mod2) % mod2;
-    return (ret1 << 30) ^ (ret2);
+  int get(int l, int r) {
+    if(l == 0) return ((H1[r] << 30) ^ (H2[r]));
+    int R1 = (((H1[r] - (H1[l - 1] * P1[r - l + 1])) % M1) + M1) % M1;
+    int R2 = (((H2[r] - (H2[l - 1] * P2[r - l + 1])) % M2) + M2) % M2;
+    return ((R1 << 30) ^ (R2));
   }
 };
+//}}}
