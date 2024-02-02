@@ -6,6 +6,7 @@
 - [X] Fenwick Tree
 - [ ] Combinatorics
 - [ ] Tour
+- [ ] LCA
 - [ ] Flow
 - [X] Hash
 - [ ] Hull
