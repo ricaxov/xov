@@ -11,8 +11,8 @@
 - [ ] Fexp
 - [ ] Matrix Fexp
 - [ ] Suffix Array
-- [ ] Template
-- [ ] Debugging Scripts
+- [X] Template
+- [X] Debugging Scripts
 - [ ] Centroid Decomposition
 - [ ] Pollard Rho
 - [ ] Geometry
