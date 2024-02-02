@@ -1,3 +1,8 @@
+# Brute Force Script {{{
+
+# To run it just write this line ->
+# chmod +x script.sh && ./script.sh
+
 solve="a"
 expected="b"
 cases="c"
@@ -50,3 +55,4 @@ mv "input.txt" "output/"
 mv "$solve" "output/"
 mv "$expected" "output/"
 mv "$cases" "output/"
+#}}}
