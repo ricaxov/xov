@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Template (v1.5.2 - 25/12/2023) (ricaxov) {{{
+// Template (v1.5.3 - 02/02/2025) (ricaxov) {{{
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
 using namespace __gnu_pbds;
@@ -32,8 +32,6 @@ using iii = array<int, 3>;
 #define pool(i, r, l) for(int i = r; i >= l; i--)
 #define mem(x, y) memset(x, y, sizeof(x))
 #define inbounds(x, l, r) (l <= x && x <= r)
-#define fillin freopen("in.txt", "r", stdin)
-#define fillout freopen("out.txt", "w", stdout)
 #define L1(x...) [&](auto X) { return x; }
 #define L2(x...) [&](auto X, auto Y) { return x; }
 
