@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//Template (v1.5.2 - 25/12/2023) (ricaxov) {{{
+// Template (v1.5.2 - 25/12/2023) (ricaxov) {{{
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
 using namespace __gnu_pbds;
@@ -61,5 +61,5 @@ template<class...X> void dbg(X const&...x) { ((cout << x), ...); cout << "\n"; }
 
 auto main() -> signed {
   fastio;
-   
+  
 }
