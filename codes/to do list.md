@@ -3,6 +3,7 @@
 - [ ] Mint
 - [X] DSU
 - [ ] Segment Tree
+- [X] Fenwick Tree
 - [ ] Combinatorics
 - [ ] Tour
 - [ ] Flow
