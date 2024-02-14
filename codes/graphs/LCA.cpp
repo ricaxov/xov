@@ -1,4 +1,4 @@
-// (0.1v - still needs more testing)
+// (0.1v - fucked up, fix it latter)
 struct LCA {/*{{{*/
   int N, TIMER = 0;
   vector<vector<int>> G;
