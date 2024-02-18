@@ -1,36 +1,28 @@
-template<typename T> class SegmentTree {
-  int n;
-  V<T> SEG;
-  T neutral;
-  function<T(T,T)> merge;
-public:
-  SegmentTree(int n, T neutral, function<T(T,T)> merge) : n(n), neutral(neutral), merge(merge), SEG(2 * n, neutral) {};
+template<typename T> /*{{{*/
+struct SegmentTree {
+  int N;
+  T Neutral;
+  vector<T> data;
+  explicit SegmentTree (int N) : N(N), data(4 * N) {}
 
-  SegmentTree(V<T> &v, T neutral, function<T(T,T)> merge) : n(sz(v)), neutral(neutral), merge(merge), SEG(2 * n, neutral) {
-    for(int i = 0; i < n; i++) {
-      SEG[i + n] = v[i];
-    }
-    build();
+  T merge(T a, T b) {
+    return a + b;
   }
 
-  void build() {
-    for(int i = n - 1; i > 0; i--) {
-      SEG[i] = merge(SEG[2 * i], SEG[2 * i + 1]);
-    }
+  T set(int x, T const& v, int p, int l, int r) {
+    if(l == x && x == r) return data[p] = v;
+    if(x < l || r < x) return data[p];
+    int m = midpoint(l, r);
+    return data[p] = merge(set(x, v, 2 * p, l, m), set(x, v, 2 * p + 1, m + 1, r));
   }
 
-  T query(int l, int r) {
-    T rl = neutral, rr = neutral;
-    for(l += n, r += n + 1; l < r; l /= 2, r /= 2) {
-      if(l & 1) rl = merge(rl, SEG[l++]);
-      if(r & 1) rr = merge(SEG[--r], rr);
-    }
-    return merge(rl, rr);
+  T get(int x, int y, int p, int l, int r) {
+    if(x <= l && r <= y) return data[p];
+    if(y < l || r < x) return T();
+    int m = midpoint(l, r);
+    return merge(get(x, y, 2 * p, l, m), get(x, y, 2 * p + 1, m + 1, r));
   }
 
-  void update(int p, T val) {
-    for(SEG[p += n] = val; p > 1; p /= 2) {
-      SEG[p / 2] = merge(SEG[min(p, p ^ 1)], SEG[max(p, p ^ 1)]);
-    }
-  }
-};
+  T set(int x, T v) { return set(x, v, 1, 0, N - 1); }
+  T get(int x, int y) { return get(x, y, 1, 0, N - 1); }
+};/*}}}*/
