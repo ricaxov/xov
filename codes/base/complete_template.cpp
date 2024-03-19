@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Template (v1.5.3 - 02/02/2025) (ricaxov) {{{
+// Template (v1.5.3 - 02/02/2024) (ricaxov) {{{
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
 using namespace __gnu_pbds;
@@ -20,7 +20,7 @@ using iii = array<int, 3>;
 #define V vector
 #define all(x) begin(x), end(x)
 #define rall(x) rbegin(x), rend(x)
-#define sz(x) (int)size(x)
+#define sz(x) size(x)
 #define pb push_back
 #define pf push_front
 #define eb emplace_back
@@ -60,4 +60,7 @@ template<class...X> void dbg(X const&...x) { ((cout << x), ...); cout << "\n"; }
 auto main() -> signed {
   fastio;
   
+  int T; in(T); while(T--) {
+    
+  }
 }
