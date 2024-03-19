@@ -60,7 +60,4 @@ template<class...X> void dbg(X const&...x) { ((cout << x), ...); cout << "\n"; }
 auto main() -> signed {
   fastio;
   
-  int T; in(T); while(T--) {
-    
-  }
 }
