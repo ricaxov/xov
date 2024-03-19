@@ -1,5 +1,5 @@
 const int MAXN = 1e5 + 5;
- 
+ // terminar isso daqui dps
 int N;
 vector<int> A, M(MAXN, 0);
  
