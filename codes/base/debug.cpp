@@ -1,5 +1,4 @@
 // Debug {{{
-#define var(x) "[", #x, " ", x, "] "
-template<typename ...A> void db(A const&... a) { ((cout << (a)), ...); cout << endl; }
+#define var(x) "[", #x, " = ", x, "]"
+template<class...X> void dbg(X const&...x) { ((cout << x), ...); cout << "\n"; }
 //}}}
- 
