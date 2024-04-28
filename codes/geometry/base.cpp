@@ -1,4 +1,7 @@
-// Geometry Template (v0.0.5 - 25/04/2024) (ricaxov) {{{
+// Geometry Template (v0.0.6 - 28/04/2024) (ricaxov) {{{
+
+// ! WARN: Everything is untested
+
 const long double EPS = 1e-9;
 const long double PI = acos(-1.0);
 
@@ -28,8 +31,14 @@ struct Point {
   Point operator - (Point const& p) const { return {x - p.x, y - p.y}; }
   Point operator * (T const& d) const { return {x * d, y * d}; }
   Point operator / (T const& d) const { return {x / d, y / d}; }
-  T operator * (Point const& p) const { return x * p.x + y * p.y; } // dot product
-  T operator ^ (Point const& p) const { return x * p.y - y * p.x; } // cross product 
+  T operator * (Point const& p) const { return x * p.x + y * p.y; }
+  T operator ^ (Point const& p) const { return x * p.y - y * p.x; }
+
+  // TODO
+  // void operator -= 
+  // void operator += 
+  // void operator *=
+  // void operator /=
 
   bool operator < (Point const& p) const {
     if (!eq(x, p.x)) return x < p.x;
@@ -48,19 +57,15 @@ struct Point {
   friend ostream& operator << (ostream& os, Point const& p) { return os << p.x << ' ' << p.y; }
 };
 
-// ! WARN: Everything is untested
-
 /* -1 => Direita  */
 /*  0 => Colinear */
 /* +1 => Esquerda */
 
 template<typename T>
-int side(Point<T> const& a, Point<T> const& b, Point<T> const& c) { // A -> B em relacao a C
+int side(Point<T> const& a, Point<T> const& b, Point<T> const& c) {
   T x = (c - a) ^ (a - b);
   return (x > EPS) - (x < -EPS);
 }
-
-// TODO: Modulo e magnitude -> 
 
 template<typename T>
 long double norm(Point<T> const& x) {
@@ -81,4 +86,18 @@ template<typename T>
 long double norm2(Point<T> const& x, Point<T> const& y) {
   return norm2(x - y);
 }
+
+template<typename T>
+T sarea(Point<T> const& a, Point<T> const& b, Point<T> const& c) {
+  return ((b - a) ^ (c - b)) / 2.0;
+}
+
+template<typename T>
+T sarea(Point<T> const& a, Point<T> const& b, Point<T> const& c) {
+  return abs(sarea(a, b, c));
+}
+
+// TODO: Line
+// TODO: Poly
+// TODO: CH
 //}}}
