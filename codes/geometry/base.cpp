@@ -1,12 +1,6 @@
 // Geometry Template (v0.0.6 - 28/04/2024) (ricaxov) {{{
-
-// ! WARN: Everything is untested
-
 const long double EPS = 1e-9;
 const long double PI = acos(-1.0);
-
-long double deg_to_rad(long double d) { return d * PI / 180.0; }
-long double rad_to_deg(long double r) { return r * 180.0 / PI; }
 
 template<typename T>
 T sq(T x) { return x * x; }
@@ -34,12 +28,6 @@ struct Point {
   T operator * (Point const& p) const { return x * p.x + y * p.y; }
   T operator ^ (Point const& p) const { return x * p.y - y * p.x; }
 
-  // TODO
-  // void operator -= 
-  // void operator += 
-  // void operator *=
-  // void operator /=
-
   bool operator < (Point const& p) const {
     if (!eq(x, p.x)) return x < p.x;
     return y < p.y;
@@ -57,43 +45,34 @@ struct Point {
   friend ostream& operator << (ostream& os, Point const& p) { return os << p.x << ' ' << p.y; }
 };
 
-/* -1 => Direita  */
-/*  0 => Colinear */
-/* +1 => Esquerda */
-
-template<typename T>
-int side(Point<T> const& a, Point<T> const& b, Point<T> const& c) {
-  T x = (c - a) ^ (a - b);
-  return (x > EPS) - (x < -EPS);
-}
-
 template<typename T>
 long double norm(Point<T> const& x) {
   return sqrtl(x * x);
 }
 
 template<typename T>
-long double norm(Point<T> const& x, Point<T> const& y) {
-  return norm(x - y);
-}
-
-template<typename T>
-long double norm2(Point<T> const& x) {
+T norm2(Point<T> const& x) {
   return x * x;
 }
 
+// Preciso verificar isso daqui, dps
+/* +1 => Direita  */
+/*  0 => Colinear */
+/* -1 => Esquerda */
+
 template<typename T>
-long double norm2(Point<T> const& x, Point<T> const& y) {
-  return norm2(x - y);
+int side(Point<T> const& a, Point<T> const& b, Point<T> const& c) {
+  T x = (c - a) ^ (b - a);
+  return (x > EPS) - (x < -EPS);
 }
 
 template<typename T>
-T sarea(Point<T> const& a, Point<T> const& b, Point<T> const& c) {
-  return ((b - a) ^ (c - b)) / 2.0;
+long double sarea(Point<T> const& a, Point<T> const& b, Point<T> const& c) {
+  return ((b - a) ^ (c - a)) / 2.0;
 }
 
 template<typename T>
-T sarea(Point<T> const& a, Point<T> const& b, Point<T> const& c) {
+long double area(Point<T> const& a, Point<T> const& b, Point<T> const& c) {
   return abs(sarea(a, b, c));
 }
 
