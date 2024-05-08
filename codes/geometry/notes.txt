@@ -16,15 +16,12 @@ m = (6-4) / (-5-2)
 m = 2/-7
 
 fixando P1:
-  (y2-y1) = m(x2-x1)
-  (y2 - 4) = (-2/7)(x2 - 2)
-  y2 = (-2/7)(x2 - 2) + 4
-  y2 = -2x2/7 + 4/7 + 4
-  y2 = -2x2/7 + 32/7
-  
-  trocando y2 por y, x2 por x
+  (y-y1) = m(x-x1)
+  (y - 4) = (-2/7)(x - 2)
+  y = (-2/7)(x - 2) + 4
+  y = -2x/7 + 4/7 + 4
   y = -2x/7 + 32/7
-  
+
 transformar slope-intercept em standard:
   Ax + By + C = 0
   y = mx + b
