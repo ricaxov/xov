@@ -56,7 +56,25 @@ tirando as divisões:
   A = -2
   B = -7
   C = 12 + 20 = 32
+
+  Provando C:
+
+  -((P1y - P2y)*P2x + (P2x - P1x)*P2y) 
   
+  -((P1y*P2x - P2y*P2x) + (P2x*P2y - P1x*P2y))
+  
+  ajustando:
+  
+  -(P2x*P1y - P2x*P2y + P2x*P2y - P1x*P2y)
+  
+  -(P2x*P1y - P1x*P2y)
+  
+  -P2x*P1y + P1.x*P2y
+  
+  P1x*P2y - P2x*P1y
+  
+  P1^P2
+
   WTF math is like magic!!!
 
 A = (P1y - P2y)
