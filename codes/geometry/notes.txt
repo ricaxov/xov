@@ -40,7 +40,7 @@ tirando as divisões:
   -2x - 7y + 32 = 0
   
   A = -2
-  B = 7
+  B = -7
   C = 32
 
 ----------------------------------
@@ -50,11 +50,11 @@ tirando as divisões:
   
   
   A = 4 - 6
-  B = 2 - -5
+  B = -5 - 2
   C = (2*6) - (4*-5)
   
   A = -2
-  B = 7
+  B = -7
   C = 12 + 20 = 32
   
   WTF math is like magic!!!
