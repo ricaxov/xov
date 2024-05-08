@@ -1,0 +1,64 @@
+Point -> Line 
+
+Algumas anotações sobre formas slope-intercept e standard na conversão de ponto -> segmento
+
+P1 = {2, 4}
+P2 = {-5, 6}
+
+Ax + By + C = 0
+y = mx + b
+
+(y2-y1) = m(x2-x1)
+
+m = (y2-y1) / (x2-x1)
+
+m = (6-4) / (-5-2)
+m = 2/-7
+
+fixando P1:
+  (y2-y1) = m(x2-x1)
+  (y2 - 4) = (-2/7)(x2 - 2)
+  y2 = (-2/7)(x2 - 2) + 4
+  y2 = -2x2/7 + 4/7 + 4
+  y2 = -2x2/7 + 32/7
+  
+  trocando y2 por y, x2 por x
+  y = -2x/7 + 32/7
+  
+transformar slope-intercept em standard:
+  Ax + By + C = 0
+  y = mx + b
+  mx - y + b = 0
+  
+aplicando a equação acima:
+  y = -2x/7 + 32/7
+  
+  -2x/7 - y + 32/7 = 0
+  
+tirando as divisões:
+
+  -2x - 7y + 32 = 0
+  
+  A = -2
+  B = 7
+  C = 32
+
+----------------------------------
+  
+  P1 = {2, 4}
+  P2 = {-5, 6}
+  
+  
+  A = 4 - 6
+  B = 2 - -5
+  C = (2*6) - (4*-5)
+  
+  A = -2
+  B = 7
+  C = 12 + 20 = 32
+  
+  WTF math is like magic!!!
+
+A = (P1y - P2y)
+B = (P2x - P1x)
+C = (P1 ^ P2)
