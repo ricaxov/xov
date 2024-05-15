@@ -55,6 +55,24 @@ T norm2(Point<T> const& x) {
   return x * x;
 }
 
+template<typename T>
+Point<T> unit(Point<T> const& a) {
+  return a / norm(a);
+}
+
+// Euclidian distance: kinda useless to have this function tho
+template<typename T>
+long double len(Point<T> const& a, Point<T> const& b) {
+  return norm(a-b);
+}
+
+// proj
+// lenproj
+// reflect
+// transp
+
+// TODO: continuar essa parte ^ 
+
 /* +1 => Left */
 /* -1 => Right  */
 /*  0 => Collinear */
@@ -124,7 +142,25 @@ struct Line {
   bool inside_seg(Point<T> const& p) const {
     // same as: inside(p) && check_bounding_box(p, p1, p2)
     return (eq((p1-p) ^ (p2-p), T(0)) 
-            && ((p1-p) * (p2-p) <= T(0))); 
+           && ((p1-p) * (p2-p) <= T(0))); 
   }
 };
 //}}}
+
+// * interessante ->
+// * Diametro do convex hull de um poligono
+
+// https://mukeshiiitm.wordpress.com/2008/05/27/find-the-farthest-pair-of-points/
+// https://cgm.cs.mcgill.ca/~athens/cs507/Projects/2000/MS/diameter/node3.html
+
+
+// template<typename T>
+// bool seg_has_inter(Line<T> const& l1, Line<T> const& l2) {
+//   if (side(l2.p1, l1.p1, l1.p2) * side(l2.p2, l1.p1, l1.p2) < 0
+//    && side(l1.p1, l2.p1, l2.p2) * side(l1.p2, l2.p1, l2.p2) < 0) return 1;
+//   if (l1.inside_seg(l2.p1)) return 1;
+//   if (l1.inside_seg(l2.p2)) return 1;
+//   if (l2.inside_seg(l1.p1)) return 1;
+//   if (l2.inside_seg(l1.p2)) return 1;
+//   return 0;
+// }
