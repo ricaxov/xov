@@ -1,4 +1,4 @@
-// Geometry Template (v0.1.0 - 13/05/2024) (ricaxov) {{{
+// Geometry Template (v0.1.2 - 15/05/2024) (ricaxov) {{{
 const long double EPS = 1e-9;
 const long double PI = acos(-1.0);
 
@@ -55,15 +55,13 @@ T norm2(Point<T> const& x) {
   return x * x;
 }
 
-// TODO: Check this
-/* -1 => Direita  */
-/*  0 => Colinear */
-/* +1 => Esquerda */
+/* +1 => Left */
+/* -1 => Right  */
+/*  0 => Collinear */
 
-// meu
 template<typename T>
 int side(Point<T> const& a, Point<T> const& b, Point<T> const& c) {
-  T x = (b - a) ^ (c - a);
+  T x = (b-a) ^ (c-a);
   return (x > EPS) - (x < -EPS);
 }
 
@@ -93,22 +91,19 @@ Point<T> rot90ccw(Point<T> const& p) {
   return Point<T>{-p.y, p.x};
 }
 
-// TODO: tem que colocar mais coisas aqui pra cima ^ 
-
 template<typename T>
 struct Line {
   Point<T> p1, p2;
   T a, b, c;
 
-  Line () {} /* -> nao sei se vai ter esse construtor quando nao tem nada  */
+  // Line () : {}
 
-  // acho que faz mais sentido fazer do p2 pro p1 -> mas isso daqui ta funcionando ent tanto faz
-  Line (Point<T> const& p1, Point<T> const& p2) : p1(p1), p2(p2), 
+  Line (Point<T> const& p1, Point<T> const& p2) : p1(p1), p2(p2),
     a(p1.y-p2.y),
     b(p2.x-p1.x), 
     c(p1^p2) {}
 
-  // TODO: terminar isso daqui
+  // !WARN: missing this part
   Line (T const& a, T const& b, T const& c) : a(a), b(b), c(c) {
     
   }
@@ -119,29 +114,17 @@ struct Line {
   }
 
   T eval(Point<T> const& p) const {
-    return a * p.x + b * p.y + c;
+    return a*p.x + b*p.y + c;
   }
 
-  bool inside(Point<T> const& p) const { // inside line
+  bool inside(Point<T> const& p) const {
     return eq(eval(p), T(0));
   }
 
-  // entender essa parte daqui
   bool inside_seg(Point<T> const& p) const {
-    return eq(((p1-p) ^ (p2-p)), T())
-           && ((p1-p) * (p2-p)) <= T();
+    // same as: inside(p) && check_bounding_box(p, p1, p2)
+    return (eq((p1-p) ^ (p2-p), T(0)) 
+            && ((p1-p) * (p2-p) <= T(0))); 
   }
 };
-
-// essa parte aqui faz total sentido, so precisa desenhar um pouco pra fazer sentido
-template<typename T>
-bool seg_has_inter(Line<T> const& l1, Line<T> const& l2) {
-  if (side(l2.p1, l1.p1, l1.p2) * side(l2.p2, l1.p1, l1.p2) < 0
-   && side(l1.p1, l2.p1, l2.p2) * side(l1.p2, l2.p1, l2.p2) < 0) return 1;
-  if (l1.inside_seg(l2.p1)) return 1;
-  if (l1.inside_seg(l2.p2)) return 1;
-  if (l2.inside_seg(l1.p1)) return 1;
-  if (l2.inside_seg(l1.p2)) return 1;
-  return 0;
-}
 //}}}
