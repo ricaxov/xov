@@ -1,9 +1,6 @@
-// Geometry Template (v0.1.2 - 15/05/2024) (ricaxov) {{{
+// Geometry Template (v0.2.0 - 16/05/2024) (ricaxov) {{{
 const long double EPS = 1e-9;
 const long double PI = acos(-1.0);
-
-template<typename T>
-T sq(T x) { return x * x; }
 
 template<typename T>
 bool eq(T const& a, T const& b) {
@@ -60,32 +57,19 @@ Point<T> unit(Point<T> const& a) {
   return a / norm(a);
 }
 
-// Euclidian distance: kinda useless to have this function tho
-template<typename T>
-long double len(Point<T> const& a, Point<T> const& b) {
-  return norm(a-b);
-}
-
-// proj
-// lenproj
-// reflect
-// transp
-
-// TODO: continuar essa parte ^ 
-
 /* +1 => Left */
 /* -1 => Right  */
 /*  0 => Collinear */
 
 template<typename T>
 int side(Point<T> const& a, Point<T> const& b, Point<T> const& c) {
-  T x = (b-a) ^ (c-a);
+  T x = (b - a) ^ (c - a);
   return (x > EPS) - (x < -EPS);
 }
 
 template<typename T>
 long double sarea(Point<T> const& a, Point<T> const& b, Point<T> const& c) {
-  return ((b-a) ^ (c-a))/2.0;
+  return ((b - a) ^ (c - a)) / 2.0;
 }
 
 template<typename T>
@@ -111,20 +95,18 @@ Point<T> rot90ccw(Point<T> const& p) {
 
 template<typename T>
 struct Line {
-  Point<T> p1, p2;
   T a, b, c;
+  Point<T> p1, p2;
 
-  // Line () : {}
+  Line () : {}
 
   Line (Point<T> const& p1, Point<T> const& p2) : p1(p1), p2(p2),
-    a(p1.y-p2.y),
-    b(p2.x-p1.x), 
-    c(p1^p2) {}
+    a(p1.y - p2.y),
+    b(p2.x - p1.x), 
+    c(p1 ^ p2) {}
 
-  // !WARN: missing this part
-  Line (T const& a, T const& b, T const& c) : a(a), b(b), c(c) {
-    
-  }
+  Line (T const& a, T const& b, T const& c) : a(a), b(b), c(c) {}
+    // !WARN: missing this part
 
   bool operator < (Line const& l) const {
     if (p1 != l.p1) return p1 < l.p1;
@@ -132,7 +114,7 @@ struct Line {
   }
 
   T eval(Point<T> const& p) const {
-    return a*p.x + b*p.y + c;
+    return a * p.x + b * p.y + c;
   }
 
   bool inside(Point<T> const& p) const {
@@ -140,27 +122,8 @@ struct Line {
   }
 
   bool inside_seg(Point<T> const& p) const {
-    // same as: inside(p) && check_bounding_box(p, p1, p2)
-    return (eq((p1-p) ^ (p2-p), T(0)) 
-           && ((p1-p) * (p2-p) <= T(0))); 
+    return (eq((p1 - p) ^ (p2 - p), T(0)) 
+           && ((p1 - p) * (p2 - p) <= T(0))); 
   }
 };
 //}}}
-
-// * interessante ->
-// * Diametro do convex hull de um poligono
-
-// https://mukeshiiitm.wordpress.com/2008/05/27/find-the-farthest-pair-of-points/
-// https://cgm.cs.mcgill.ca/~athens/cs507/Projects/2000/MS/diameter/node3.html
-
-
-// template<typename T>
-// bool seg_has_inter(Line<T> const& l1, Line<T> const& l2) {
-//   if (side(l2.p1, l1.p1, l1.p2) * side(l2.p2, l1.p1, l1.p2) < 0
-//    && side(l1.p1, l2.p1, l2.p2) * side(l1.p2, l2.p1, l2.p2) < 0) return 1;
-//   if (l1.inside_seg(l2.p1)) return 1;
-//   if (l1.inside_seg(l2.p2)) return 1;
-//   if (l2.inside_seg(l1.p1)) return 1;
-//   if (l2.inside_seg(l1.p2)) return 1;
-//   return 0;
-// }
