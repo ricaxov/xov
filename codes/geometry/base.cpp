@@ -98,7 +98,7 @@ struct Line {
   T a, b, c;
   Point<T> p1, p2;
 
-  Line () : {}
+  // Line () : {}
 
   Line (Point<T> const& p1, Point<T> const& p2) : p1(p1), p2(p2),
     a(p1.y - p2.y),
