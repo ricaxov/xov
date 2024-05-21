@@ -44,4 +44,26 @@ vector<int> sort_cyclic_shifts(string const& S) {
 
   return p;
 }
+
+vector<int> kasai(string const& S, vector<int> const& P) {
+  int N = size(S);
+  vector<int> rank(N);
+  for (int i = 0; i < N; i++)
+    rank[P[i]] = i;
+
+  int k = 0;
+  vector<int> lcp(N-1);
+  for (int i = 0; i < N; i++) {
+    if (rank[i] == N - 1) {
+      k = 0;
+      continue;
+    }
+    int j = P[rank[i] + 1];
+    while (i + k < N && j + k < N && S[i + k] == S[j + k]) k++;
+    lcp[rank[i]] = k;
+    if (k) k--;
+  }
+
+  return lcp;
+}
 //}}}
