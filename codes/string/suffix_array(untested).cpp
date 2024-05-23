@@ -2,15 +2,14 @@
 
 // Suffix Array {{{
 vector<int> sort_cyclic_shifts(string const& S) {
-  const int MALPHA = 256;
   int N = size(S);
 
-  vector<int> p(N), c(N), cnt(max(MALPHA, N), 0);
-  for (int i = 0; i < N; i++) cnt[S[i]]++;
+  vector<int> p(N), c(N), cnt(max(1LL << 8, N));
 
+  for (auto i : S) cnt[i]++;
   partial_sum(begin(cnt), end(cnt), begin(cnt));
 
-  for (int i = N - 1; i >= 0; i--) {
+  for (int i = 0; i < N; i++) {
     p[--cnt[S[i]]] = i;
   }
 
@@ -18,15 +17,14 @@ vector<int> sort_cyclic_shifts(string const& S) {
 
   int classes = 1;
   for (int i = 1; i < N; i++) {
-    if (S[p[i]]  != S[p[i - 1]]) classes++;
-    c[p[i]] = classes-1;
+    if (S[p[i]] != S[p[i - 1]]) classes++;
+    c[p[i]] = classes - 1;
   }
 
   vector<int> pn(N), cn(N);
-
-  for (int h = 0; (1 << h) < N; h++) {
+  for (int shift = 1; shift < N; shift *= 2) {
     for (int i = 0; i < N; i++) {
-      pn[i] = p[i] - (1<<h);
+      pn[i] = p[i] - shift;
       if (pn[i] < 0) pn[i] += N;
     }
 
@@ -34,20 +32,43 @@ vector<int> sort_cyclic_shifts(string const& S) {
 
     for (int i = 0; i < N; i++) cnt[c[pn[i]]]++;
     for (int i = 1; i < classes; i++) cnt[i] += cnt[i - 1];
-    for (int i = N-1; i >= 0; i--) p[--cnt[c[pn[i]]]] = pn[i];
+    for (int i = N - 1; i >= 0; i--) p[--cnt[c[pn[i]]]] = pn[i];
     cn[p[0]]= 0;
     classes = 1;
 
+    auto key = [&](int x) {
+      return pair{c[x], c[(x + shift) % N]};
+    };
+    
     for (int i = 1; i < N; i++) {
-      pair cur{c[p[i]], c[(p[i] + (1 << h)) % N]};
-      pair prev{c[p[i-1]], c[(p[i-1] + (1 << h)) % N]};
-
-      if (cur != prev) classes++;
+      if (key(p[i]) != key(p[i - 1])) classes++;
       cn[p[i]] = classes - 1;
     }
 
     c.swap(cn);
   }
   return p;
+}
+vector<int> kasai(string const& S, vector<int> const& P) {
+  int N = size(S);
+  vector<int> rank(N);
+  for (int i = 0; i < N; i++) {
+    rank[P[i]] = i;
+  }
+
+  int k = 0;
+  vector<int> lcp(N - 1);
+  for (int i = 0; i < N; i++) {
+    if (rank[i] == N - 1) {
+      k = 0;
+    } else {
+      int j = P[rank[i] + 1];
+      while (i + k < N && j + k < N && S[i + k] == S[j + k]) k++;
+      lcp[rank[i]] = k;
+      if (k) k--;
+    }
+  }
+
+  return lcp;
 }
 //}}}
