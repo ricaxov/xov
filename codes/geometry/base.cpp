@@ -1,15 +1,15 @@
-// Geometry Template (v0.5.0 - 18/08/2024) (Jotinha, ricaxov, UmMainAkali) {{{
+// Geometry Template (v0.5.1 - 18/08/2024) (Jotinha, ricaxov, UmMainAkali) {{{
 const long double EPS = 1e-9;
 const long double PI = acosl(-1.0);
   
 template<typename T>
 T sq(T x) { return x*x; }
-
+ 
 template<typename T>
 bool eq(T const& a, T const& b) {
   return abs(a-b) <= EPS;
 }
-
+ 
 template<>
 bool eq<int>(int const& a, int const& b) {
   return a == b;
@@ -44,7 +44,7 @@ struct Point {
   friend istream& operator >> (istream& is, Point& p) { return is >> p.x >> p.y; }
   friend ostream& operator << (ostream& os, Point const& p) { return os << p.x << ' ' << p.y; }
 };
-
+ 
 template<typename T>
 long double norm(Point<T> const& a) {
   return sqrtl(a * a);
@@ -54,7 +54,7 @@ template<typename T>
 long double norm(Point<T> const& a, Point<T> const& b) {
   return norm(a-b);
 }
-
+ 
 template<typename T>
 T norm2(Point<T> const& a) {
   return a * a;
@@ -64,18 +64,18 @@ template<typename T>
 T norm2(Point<T> const& a, Point<T> const& b) {
   return norm2(a-b);
 }
-
+ 
 template<typename T>
 Point<T> unit(Point<T> const& a) {
   return a / norm(a);
 }
-
+ 
 template<typename T>
 T proj_len(Point<T> const& p, Point<T> const& a, Point<T> const& b) {
   T len = (p-a) * (b-a) / norm(b-a);
   return len;
 }
-
+ 
 template<typename T>
 Point<T> proj(Point<T> const& p, Point<T> const& a, Point<T> const& b) {
   return a + unit(b-a) * proj_len(p, a, b);
@@ -117,7 +117,7 @@ template<typename T>
 Point<T> rot90ccw(Point<T> const& a) {
   return Point<T>{-a.y, a.x};
 }
-
+ 
 template<typename T>
 Point<T> transp(Point<T> const& a) {
   return Point{a.y, a.x};
@@ -139,7 +139,7 @@ struct Line {
     if (!eq(p1, l.p1)) return p1 < l.p1;
     return p2 < l.p2;
   }
-
+ 
   T eval(Point<T> const& p) const {
     return a*p.x + b*p.y + c;
   }
@@ -153,7 +153,7 @@ struct Line {
            && ((p1-p) * (p2-p) <= EPS)); 
   }
 };
-
+ 
 template<typename T>
 bool seg_has_inter(Line<T> const& l1, Line<T> const& l2) {
   if (side(l2.p1, l1.p1, l1.p2) * side(l2.p2, l1.p1, l1.p2) < 0
@@ -164,7 +164,7 @@ bool seg_has_inter(Line<T> const& l1, Line<T> const& l2) {
   if (l2.inside_seg(l1.p2)) return 1;
   return 0;
 }
-
+ 
 template<typename T>
 struct Circle {
   T r;
@@ -174,7 +174,7 @@ struct Circle {
     return norm(a-c) <= r + EPS;
   }
 };
-
+ 
 template<typename T>
 vector<Point<T>> inter_circle(Circle<T> const& c1, Circle<T> const& c2) {
   if (c1.c == c2.c) return {};
@@ -190,30 +190,30 @@ vector<Point<T>> inter_circle(Circle<T> const& c1, Circle<T> const& c2) {
   if (per == Point<T>()) return {mid};
   return {mid + per, mid - per};
 }
-
+ 
 template<typename T>
 using Poly = vector<Point<T>>;
-
+ 
 template<typename T>
 long double sarea(Poly<T> const& P) {
   int N = size(P);
   long double area = 0;
   for (int i = 0; i < N; i++) {
-    area += P[i].x * P[(i+1)%N].y;
-    area -= P[i].y * P[(i+1)%N].x;
+    auto cp = P[i], np = P[(i+1)%N];
+    area += cp^np;
   }
   return area/2;
 }
-
+ 
 template<typename T>
 long double area(Poly<T> const& P) {
   return abs(sarea(P));
 }
-
+ 
 template<typename T>
 Poly<T> convex_hull(Poly<T> P) {
   sort(begin(P), end(P));
-
+ 
   vector<Point<T>> L, U;
   for (auto p : P) {
     while (size(L) >= 2 && side(p, end(L)[-2], end(L)[-1]) != 1) L.pop_back();
@@ -228,17 +228,17 @@ Poly<T> convex_hull(Poly<T> P) {
   L.insert(end(L), begin(U), end(U)-1);
   return L;
 }
-
+ 
 template<typename T>
 pair<Point<T>, Point<T>> closest_pair(vector<Point<T>> P) {
   const long double CP_INF = 1e18;
-
+ 
   pair<long double, pair<Point<T>, Point<T>>> best;
   best.first = CP_INF;
-
+ 
   set<Point<T>> S;
   sort(begin(P), end(P));
-
+ 
   int il = 0;
   for (int ir = 0; ir < size(P); ir++) {
     if (ir != 0 && P[ir] == P[ir-1]) return {P[ir], P[ir-1]};
@@ -254,5 +254,22 @@ pair<Point<T>, Point<T>> closest_pair(vector<Point<T>> P) {
     S.insert(transp(P[ir]));
   }
   return best.second;
+}
+
+template<typename T>
+int points_in_line(Line<T> l) {
+  return gcd(abs(l.p1.x-l.p2.x), abs(l.p1.y-l.p2.y));
+}
+
+template<typename T>
+pair<int, int> pick(Poly<T> P) {
+  int N = size(P);
+  int area = 0, boundary = 0;
+  for (int i = 0; i < N; i++) {
+    auto cp = P[i], np = P[(i+1)%N];
+    area += cp^np, boundary += points_in_line(Line{cp, np});
+  }
+  int inside = (abs(area)-boundary+2) / 2;
+  return {inside, boundary};
 }
 //}}}
