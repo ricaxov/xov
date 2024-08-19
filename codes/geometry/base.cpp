@@ -1,4 +1,4 @@
-// Geometry Template (v0.5.1 - 18/08/2024) (Jotinha, ricaxov, UmMainAkali) {{{
+// Geometry Template (v0.5.3 - 19/08/2024) (Jotinha, ricaxov, UmMainAkali) {{{
 const long double EPS = 1e-9;
 const long double PI = acosl(-1.0);
   
@@ -271,5 +271,23 @@ pair<int, int> pick(Poly<T> P) {
   }
   int inside = (abs(area)-boundary+2) / 2;
   return {inside, boundary};
+}
+
+template<typename T>
+long double angle(Point<T> const& a, Point<T> const& o, Point<T> const& b) {
+  long double ang = (a-o)*(b-o) / norm(a-o) / norm(b-o);
+  return acos(max(min(ang, (long double)1), (long double)-1));
+}
+
+// must be integral T
+
+template<typename T>
+Point<T> reduce(Point<T> const& a) {
+  auto gcd = [&](auto &&self, int x, int y) {
+    if (y == 0) return x;
+    return self(self, y, x%y);
+  };
+  int g = gcd(gcd, a.x, a.y);
+  return {a.x/g, a.y/g};
 }
 //}}}
