@@ -1,4 +1,4 @@
-// Geometry Template (v0.5.3 - 19/08/2024) (Jotinha, ricaxov, UmMainAkali) {{{
+// Geometry Template (v0.5.5 - 22/08/2024) (Jotinha, ricaxov, UmMainAkali) {{{
 const long double EPS = 1e-9;
 const long double PI = acosl(-1.0);
   
@@ -101,7 +101,8 @@ long double area(Point<T> const& a, Point<T> const& b, Point<T> const& c) {
   return abs(sarea(a, b, c));
 }
  
-/* CCW => a must be in radians */
+/* ccw (a must be in radians) */
+
 template<typename T>
 Point<T> rot(Point<T> const& p, long double a) {
   return Point<T>{p.x * cos(a) - p.y * sin(a),
@@ -275,11 +276,11 @@ pair<int, int> pick(Poly<T> P) {
 
 template<typename T>
 long double angle(Point<T> const& a, Point<T> const& o, Point<T> const& b) {
-  long double ang = (a-o)*(b-o) / norm(a-o) / norm(b-o);
+  long double ang = (a-o) * (b-o) / norm(a-o) / norm(b-o);
   return acos(max(min(ang, (long double)1), (long double)-1));
 }
 
-// must be integral T
+/* must be integral T */
 
 template<typename T>
 Point<T> reduce(Point<T> const& a) {
@@ -289,5 +290,21 @@ Point<T> reduce(Point<T> const& a) {
   };
   int g = gcd(gcd, a.x, a.y);
   return {a.x/g, a.y/g};
+}
+
+template<typename T>
+void polar_sort(vector<Point<T>>& P) {
+  auto sign = [&](T const& a) -> int {
+    return (a > EPS) - (a < -EPS);
+  };
+
+  auto half = [&](Point<T> const& a) -> int {
+    return (!eq(a.y, T()) ? sign(a.y) : -sign(a.x));
+  };
+
+  sort(begin(P), end(P), [&](Point<T> const& a, Point<T> const& b) {
+    int ha = half(a), hb = half(b);
+    return (ha == hb ? (a^b) > 0 : ha < hb);
+  });
 }
 //}}}
