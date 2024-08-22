@@ -101,10 +101,8 @@ long double area(Point<T> const& a, Point<T> const& b, Point<T> const& c) {
   return abs(sarea(a, b, c));
 }
  
-/* ccw (a must be in radians) */
-
 template<typename T>
-Point<T> rot(Point<T> const& p, long double a) {
+Point<T> rot(Point<T> const& p, long double a) { // ccw
   return Point<T>{p.x * cos(a) - p.y * sin(a),
                   p.x * sin(a) + p.y * cos(a)};
 }
@@ -293,7 +291,7 @@ Point<T> reduce(Point<T> const& a) {
 }
 
 template<typename T>
-void polar_sort(vector<Point<T>>& P) {
+void polar_sort(vector<Point<T>>& P) { // ccw
   auto sign = [&](T const& a) -> int {
     return (a > EPS) - (a < -EPS);
   };
