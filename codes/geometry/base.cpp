@@ -1,9 +1,9 @@
-// Geometry Template (v0.6.0 - 23/08/2024) (Jotinha, ricaxov, UmMainAkali) {{{
+// Geometry Template (v0.6.4 - 24/08/2024) (Jotinha, ricaxov, UmMainAkali) {{{ 
 const long double EPS = 1e-9;
 const long double PI = acosl(-1.0);
   
 template<typename T>
-T sq(T x) { return x*x; }
+T sq(T const& x) { return x*x; }
  
 template<typename T>
 bool eq(T const& a, T const& b) {
@@ -76,7 +76,7 @@ T proj_len(Point<T> const& p, Point<T> const& a, Point<T> const& b) {
   return len;
 }
  
-template<typename T>
+template<typename T> // proj p in (a->b)
 Point<T> proj(Point<T> const& p, Point<T> const& a, Point<T> const& b) {
   return a + unit(b-a) * proj_len(p, a, b);
 } 
@@ -85,7 +85,7 @@ Point<T> proj(Point<T> const& p, Point<T> const& a, Point<T> const& b) {
 /* -1 => Right  */
 /*  0 => Collinear */
  
-template<typename T>
+template<typename T> // side of c in respect with (a->b)
 int side(Point<T> const& a, Point<T> const& b, Point<T> const& c) {
   T x = (b-a) ^ (c-a);
   return (x > EPS) - (x < -EPS);
@@ -101,10 +101,8 @@ long double area(Point<T> const& a, Point<T> const& b, Point<T> const& c) {
   return abs(sarea(a, b, c));
 }
  
-/* ccw (a must be in radians) */
-
 template<typename T>
-Point<T> rot(Point<T> const& p, long double a) {
+Point<T> rot(Point<T> const& p, long double const& a) { // ccw
   return Point<T>{p.x * cosl(a) - p.y * sinl(a),
                   p.x * sinl(a) + p.y * cosl(a)};
 }
@@ -258,12 +256,12 @@ pair<Point<T>, Point<T>> closest_pair(vector<Point<T>> P) {
 }
 
 template<typename T>
-int points_in_line(Line<T> l) {
+int points_in_line(Line<T> const& l) {
   return gcd(abs(l.p1.x-l.p2.x), abs(l.p1.y-l.p2.y));
 }
 
 template<typename T>
-pair<int, int> pick(Poly<T> P) {
+pair<int, int> pick(Poly<T> const& P) {
   int N = size(P);
   int area = 0, boundary = 0;
   for (int i = 0; i < N; i++) {
@@ -280,8 +278,6 @@ long double angle(Point<T> const& a, Point<T> const& o, Point<T> const& b) {
   return acosl(max(min(ang, (long double)1), (long double)-1));
 }
 
-/* must be integral T */
-
 template<typename T>
 Point<T> reduce(Point<T> const& a) {
   auto gcd = [&](auto &&self, int x, int y) {
@@ -293,7 +289,7 @@ Point<T> reduce(Point<T> const& a) {
 }
 
 template<typename T>
-void polar_sort(vector<Point<T>>& P) {
+void polar_sort(vector<Point<T>>& P) { // ccw
   auto sign = [&](T const& a) -> int {
     return (a > EPS) - (a < -EPS);
   };
@@ -304,14 +300,14 @@ void polar_sort(vector<Point<T>>& P) {
     int ha = half(a), hb = half(b);
     return (ha == hb ? (a^b) > 0 : ha < hb);
   });
+
 }
-
-/* ang(c,d) <= ang(a,b) (both have e as a fixed point) */
-
-template<typename T>
+template<typename T> // ang(c,d) <= ang(a,b) (both have e as a fixed point)
 bool angle_less(Point<T> const& a, Point<T> const& b, Point<T> const& c, Point<T> const& d, Point<T> const& e) {
   Point p1{(a-e)*(b-e), abs((a-e)^(b-e))};
   Point p2{(c-e)*(d-e), abs((c-e)^(d-e))};
   return (p2^p1) >= EPS;
 };
 //}}}
+
+// ainda preciso organizar cada parte nas ordens certas e colocar algumas coisas (tipo line-line dist, line-point dist)
