@@ -1,4 +1,4 @@
-// Geometry Template (v0.6.4 - 24/08/2024) (Jotinha, ricaxov, UmMainAkali) {{{ 
+// Geometry Template (v0.7.0 - 29/08/2024) (Jotinha, ricaxov, UmMainAkali) {{{ 
 const long double EPS = 1e-9;
 const long double PI = acosl(-1.0);
   
@@ -310,4 +310,21 @@ bool angle_less(Point<T> const& a, Point<T> const& b, Point<T> const& c, Point<T
 };
 //}}}
 
-// ainda preciso organizar cada parte nas ordens certas e colocar algumas coisas (tipo line-line dist, line-point dist)
+template<typename T>
+bool inside(Point<T> const& p, Point<T> const& a, Point<T> const& b, Point<T> const& c) { // ccw
+  int x = side(p, a, b);
+  int y = side(p, b, c);
+  int z = side(p, c, a);
+  return !((x == +1 || y == +1 || z == +1) && (x == -1 || y == -1 || z == -1));
+}
+
+template<typename T>
+bool inside_convex(Point<T> const& p, Poly<T> const& poly) { // ccw 
+  int bl = 2, br = size(poly)-1;
+  while (bl < br) {
+    int bm = (bl+br)/2;
+    if (side(p, poly[0], poly[bm]) == +1) bl = bm+1;
+    else br = bm;
+  }
+  return inside(p, poly[0], poly[br-1], poly[br]);
+}
