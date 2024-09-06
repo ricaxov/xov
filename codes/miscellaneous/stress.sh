@@ -24,9 +24,9 @@ if [ $? -ne 0 ]; then
 fi
 
 for ((i = 1; ; i)); do
-  "./$cases" >"cases.in"
-  "./$solve" <"cases.in" >"solve.out"
-  "./$expected" <"cases.in" >"expected.out"
+  "./$cases" > "cases.in"
+  "./$solve" < "cases.in" > "solve.out"
+  "./$expected" < "cases.in" > "expected.out"
 
   if (! cmp -s "solve.out" "expected.out"); then
     echo "-> Entrada:"
