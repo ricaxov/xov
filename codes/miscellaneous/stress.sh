@@ -23,7 +23,7 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-for ((i = 1; ; i)); do
+for ((i = 1; ;i++)); do
   "./$cases" > "cases.in"
   "./$solve" < "cases.in" > "solve.out"
   "./$expected" < "cases.in" > "expected.out"
