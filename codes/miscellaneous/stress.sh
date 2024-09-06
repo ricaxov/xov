@@ -1,5 +1,5 @@
 # Brute Force Script {{{
-# chmod  x stress.sh && ./stress.sh
+# chmod +x stress.sh && ./stress.sh
 
 solve="a"
 expected="b"
