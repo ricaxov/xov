@@ -195,7 +195,7 @@ struct Line {
     c(p1^p2) {}
  
   bool operator < (Line const& l) const {
-    if (!eq(p1, l.p1)) return p1 < l.p1;
+    if (p1 != l.p1) return p1 < l.p1;
     return p2 < l.p2;
   }
  
