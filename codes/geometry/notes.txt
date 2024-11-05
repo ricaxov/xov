@@ -1,79 +1,28 @@
-Point -> Line 
+Herão:
+semi_peri = (a+b+c)/2
+area_triangulo = sqrt(semi_peri*(semi_peri-a)*(semi_peri-b)*(semi_peri-c))
 
-Algumas anotações sobre formas slope-intercept e standard na conversão de ponto -> segmento
+Baricentro:
+ma, mb e mc são as medianas do triangulo
 
-P1 = {2, 4}
-P2 = {-5, 6}
+semi_peri = (ma+mb+mc)/2
+area_triangulo = 4/3 * sqrt(semi_peri*(semi_peri-ma)*(semi_peri-mb)*(semi_peri-mc))
 
-Ax + By + C = 0
-y = mx + b
+Centro do Triangulo:
+{(x1+x2+x3)/3, (y1+y2+y3)/3}
 
-(y2-y1) = m(x2-x1)
+Centro do Quadrilatero:
+{(x1+x2+x3+x4)/4, (y1+y2+y3+y4)/4}
 
-m = (y2-y1) / (x2-x1)
+Teorema de Tales:
+Proporção de lados
 
-m = (6-4) / (-5-2)
-m = 2/-7
+Lei dos cossenos:
+a^2 = b^2 + c^2 - 2bc*cos(Â)
+Â => angulo entre b e c
+  
+Formula de Euler:
+faces + vertices - arestas = 2
 
-fixando P1:
-  (y-y1) = m(x-x1)
-  (y - 4) = (-2/7)(x - 2)
-  y = (-2/7)(x - 2) + 4
-  y = -2x/7 + 4/7 + 4
-  y = -2x/7 + 32/7
-
-transformar slope-intercept em standard:
-  Ax + By + C = 0
-  y = mx + b
-  mx - y + b = 0
-  
-aplicando a equação acima:
-  y = -2x/7 + 32/7
-  
-  -2x/7 - y + 32/7 = 0
-  
-tirando as divisões:
-
-  -2x - 7y + 32 = 0
-  
-  A = -2
-  B = -7
-  C = 32
-
-----------------------------------
-  
-  P1 = {2, 4}
-  P2 = {-5, 6}
-  
-  
-  A = 4 - 6
-  B = -5 - 2
-  C = (2*6) - (4*-5)
-  
-  A = -2
-  B = -7
-  C = 12 + 20 = 32
-
-  Provando C:
-
-  -((P1y - P2y)*P2x + (P2x - P1x)*P2y) 
-  
-  -((P1y*P2x - P2y*P2x) + (P2x*P2y - P1x*P2y))
-  
-  ajustando:
-  
-  -(P2x*P1y - P2x*P2y + P2x*P2y - P1x*P2y)
-  
-  -(P2x*P1y - P1x*P2y)
-  
-  -P2x*P1y + P1.x*P2y
-  
-  P1x*P2y - P2x*P1y
-  
-  P1^P2
-
-  WTF math is like magic!!!
-
-A = (P1y - P2y)
-B = (P2x - P1x)
-C = (P1 ^ P2)
+Comprimento do Arco da Circunferencia:
+l = alfa*r;
