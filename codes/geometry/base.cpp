@@ -1,37 +1,4 @@
-/*
-!WARN: ALGUMAS FUNÇÕES (QUE USAM DIVISÃO, NÃO FUNCIONAM SEM USAR LONG DOUBLE)
-
-Herão:
-semi_peri = (a+b+c)/2
-area_triangulo = sqrt(semi_peri*(semi_peri-a)*(semi_peri-b)*(semi_peri-c))
-
-Baricentro:
-ma, mb e mc são as medianas do triangulo
-
-semi_peri = (ma+mb+mc)/2
-area_triangulo = 4/3 * sqrt(semi_peri*(semi_peri-ma)*(semi_peri-mb)*(semi_peri-mc))
-
-Centro do Triangulo:
-{(x1+x2+x3)/3, (y1+y2+y3)/3}
-
-Centro do Quadrilatero:
-{(x1+x2+x3+x4)/4, (y1+y2+y3+y4)/4}
-
-Teorema de Tales:
-Proporção de lados
-
-Lei dos cossenos:
-a^2 = b^2 + c^2 - 2bc*cos(Â)
-Â => angulo entre b e c
-  
-Formula de Euler:
-faces + vertices - arestas = 2
-
-Comprimento do Arco da Circunferencia:
-l = alfa*r;
-*/
-
-// Geometry Template (v1.0.0 - 30/08/2024) (Jotinha, ricaxov, UmMainAkali) {{{ 
+// Geometry Template (v1.5.0 - 05/11/2024) (Jotinha, ricaxov, UmMainAkali) - Nacional {{{ 
 const long double EPS = 1e-9;
 const long double PI = acosl(-1.0);
   
@@ -75,9 +42,7 @@ struct Point {
   }
  
   friend istream& operator >> (istream& is, Point& p) { return is >> p.x >> p.y; }
-  friend ostream& operator << (ostream& os, Point const& p) {
-    return os << p.x << ' ' << p.y;
-  }
+  friend ostream& operator << (ostream& os, Point const& p) { return os << p.x << ' ' << p.y; }
 };
 
 template<typename T>
@@ -100,7 +65,7 @@ T norm2(Point<T> const& a, Point<T> const& b) {
   return norm2(a-b);
 }
  
-template<typename T> // ángulo (aôb)
+template<typename T> // ang(aôb)
 long double angle(Point<T> const& a, Point<T> const& o, Point<T> const& b) {
   long double ang = (a-o) * (b-o) / norm(a-o) / norm(b-o);
   return acosl(max(min(ang, (long double)1), (long double)-1));
@@ -114,7 +79,6 @@ bool angle_less(Point<T> const& a, Point<T> const& b, Point<T> const& c,
   return (p2^p1) >= EPS;
 };
 
-// só funciona com pontos inteiros
 template<typename T> // reduzir para encontrar número maximo de pontos numa linha
 Point<T> reduce(Point<T> const& a) {
   auto gcd = [&](auto &&self, int x, int y) -> int {
@@ -125,12 +89,12 @@ Point<T> reduce(Point<T> const& a) {
   return {a.x/g, a.y/g};
 }
 
-template<typename T>
+template<typename T> // vetor unitario
 Point<T> unit(Point<T> const& a) {
   return a / norm(a);
 }
  
-template<typename T> // projeção de p em (a->b)
+template<typename T> // comprimento da projeção de p em (a->b)
 T proj_len(Point<T> const& p, Point<T> const& a, Point<T> const& b) {
   T len = (p-a) * (b-a) / norm(b-a);
   return len;
@@ -156,12 +120,12 @@ long double sarea(Point<T> const& a, Point<T> const& b, Point<T> const& c) {
   return ((b-a)^(c-a))/2;
 }
  
-template<typename T>
+template<typename T> // area do triangulo com pts (a, b, c)
 long double area(Point<T> const& a, Point<T> const& b, Point<T> const& c) {
   return abs(sarea(a, b, c));
 }
  
-template<typename T> // ccw
+template<typename T> // ccw (a rad)
 Point<T> rot(Point<T> const& p, long double const& a) {
   return Point<T>{p.x * cosl(a) - p.y * sinl(a),
                   p.x * sinl(a) + p.y * cosl(a)};
@@ -213,7 +177,7 @@ struct Line {
   }
 };
 
-template<typename T> // dois segmentos tem intersecção
+template<typename T> // tem inter de segs (l1, l2)
 bool seg_has_inter(Line<T> const& l1, Line<T> const& l2) {
   if (side(l2.p1, l1.p1, l1.p2) * side(l2.p2, l1.p1, l1.p2) < 0
    && side(l1.p1, l2.p1, l2.p2) * side(l1.p2, l2.p1, l2.p2) < 0) return 1;
@@ -224,8 +188,7 @@ bool seg_has_inter(Line<T> const& l1, Line<T> const& l2) {
   return 0;
 }
 
-// !WARN: Cuidado com -0
-template<typename T> // duas retas tem intersecção
+template<typename T> // pt de inter de retas (l1, l2)
 vector<Point<T>> inter_line(Line<T> const& l1, Line<T> const& l2) {
   auto det = l1.a*l2.b - l1.b*l2.a;
   if (eq(det, T())) return {};
@@ -234,13 +197,41 @@ vector<Point<T>> inter_line(Line<T> const& l1, Line<T> const& l2) {
   return {Point<T>{x, y}};
 }
 
-template<typename T> // distância entre ponto e linha
+template<typename T>
+vector<Point<T>> inter_seg_proper(Line<T> const& l1, Line<T> const& l2) {
+  auto ans = inter_line(l1, l2);
+  if (ans.empty()) return {};
+  if (!l1.inside_seg(ans.front())) return {};
+  if (!l2.inside_seg(ans.front())) return {};
+  return ans;
+}
+
+template<typename T> // seg inter
+vector<Point<T>> inter_seg(Line<T> const& l1, Line<T> const& l2) {
+  if (!seg_has_inter(l1, l2)) return {};
+
+  vector<Point<T>> ps;
+  if (l1.inside_seg(l2.p1)) ps.push_back(l2.p1);
+  if (l1.inside_seg(l2.p2)) ps.push_back(l2.p2);
+  if (l2.inside_seg(l1.p1)) ps.push_back(l1.p1);
+  if (l2.inside_seg(l1.p2)) ps.push_back(l1.p2);
+
+  sort(begin(ps), end(ps));
+  ps.erase(unique(begin(ps), end(ps)), end(ps));
+
+  if (size(ps) == 1) return {ps.front()};
+  else if (size(ps) > 1) return {ps.front(), ps.back()};
+
+  return {inter_seg_proper(l1, l2).front()};
+}
+
+template<typename T> // dist pt e reta
 T point_line_dist(Point<T> const& p, Line<T> const& l) {
   if (l.p1 == l.p2) return norm(l.p1-p);
   return 2 * abs(sarea(p, l.p1, l.p2)) / norm(l.p1-l.p2);
 }
 
-template<typename T> // distância entre ponto e segmento
+template<typename T> // dist pt e seg
 T point_seg_dist(Point<T> const& p, Line<T> const& l) {
   if (l.p1 == l.p2) return norm(l.p1-p);
   if ((l.p2-l.p1)*(p-l.p1) < 0) return norm(l.p1-p);
@@ -248,7 +239,7 @@ T point_seg_dist(Point<T> const& p, Line<T> const& l) {
   return point_line_dist(p, l);
 }
 
-template<typename T> // distância entre segmentos
+template<typename T> // dist segs
 T seg_dist(Line<T> const& l1, Line<T> const& l2) {
   if (seg_has_inter(l1, l2)) return T();
   return min({point_seg_dist(l1.p1, l2),
@@ -267,7 +258,7 @@ struct Circle {
   }
 };
 
-template<typename T> // ponto de intersecção entre dois circulos
+template<typename T> // pts de inter entre circ
 vector<Point<T>> inter_circle(Circle<T> const& c1, Circle<T> const& c2) {
   if (c1.c == c2.c) return {};
   Point vec = c2.c - c1.c;
@@ -283,7 +274,7 @@ vector<Point<T>> inter_circle(Circle<T> const& c1, Circle<T> const& c2) {
   return {mid + per, mid - per};
 }
 
-template<typename T> // area de intersecção entre circulos (r1 >= r2)
+template<typename T> // area de inter entre circ (r1 >= r2)
 T circle_inter_area(Circle<T> const& c1, Circle<T> const& c2) {
   T d = norm(c1.c, c2.c);
 
@@ -301,7 +292,7 @@ T circle_inter_area(Circle<T> const& c1, Circle<T> const& c2) {
 template<typename T>
 using Poly = vector<Point<T>>;
  
-template<typename T> // área do poligono
+template<typename T>
 long double sarea(Poly<T> const& P) {
   int N = size(P);
   long double area = 0;
@@ -312,12 +303,12 @@ long double sarea(Poly<T> const& P) {
   return area/2;
 }
  
-template<typename T>
+template<typename T> // poly area
 long double area(Poly<T> const& P) {
   return abs(sarea(P));
 }
 
-// para mudar para cobrir pontos colineares precisa mudar o +1
+// CH sem pts colineares
 template<typename T>
 Poly<T> convex_hull(Poly<T> P) {
   sort(begin(P), end(P));
@@ -337,7 +328,7 @@ Poly<T> convex_hull(Poly<T> P) {
   return L;
 }
  
-template<typename T> // retorna dois pontos mais próximos
+template<typename T> // par com menor dist (euclidiana)
 pair<Point<T>, Point<T>> closest_pair(vector<Point<T>> P) {
   const long double CP_INF = 1e18;
  
@@ -364,26 +355,26 @@ pair<Point<T>, Point<T>> closest_pair(vector<Point<T>> P) {
   return best.second;
 }
 
-template<typename T> // número de pontos inteiros em uma segmento l
-int points_in_line(Line<T> const& l) {
+template<typename T> // pts int no seg l
+int points_in_seg(Line<T> const& l) {
   return gcd(abs(l.p1.x-l.p2.x), abs(l.p1.y-l.p2.y));
 }
 
-// teorema de pick =>
-// (número de pts inteiros dentro e na borda do poligono P)
+// pick -> (area = inside + boundary/2 - 1)
+// (pts int inside e boundary de P)
 template<typename T>
 pair<int, int> pick(Poly<T> const& P) { // ccw
   int N = size(P);
   int area = 0, boundary = 0;
   for (int i = 0; i < N; i++) {
     auto cp = P[i], np = P[(i+1)%N];
-    area += cp^np, boundary += points_in_line(Line{cp, np});
+    area += cp^np, boundary += points_in_seg(Line{cp, np});
   }
   int inside = (abs(area)-boundary+2) / 2;
   return {inside, boundary};
 }
 
-template<typename T> // ccw
+template<typename T> // ccw (sort pelo ang)
 void polar_sort(vector<Point<T>>& P) {
   auto sign = [&](T const& a) -> int {
     return (a > EPS) - (a < -EPS);
@@ -396,18 +387,16 @@ void polar_sort(vector<Point<T>>& P) {
     return (ha == hb ? (a^b) > 0 : ha < hb);
   });
 }
-//}}}
 
 template<typename T> // ccw
-bool inside(Point<T> const& p, Point<T> const& a,
-            Point<T> const& b, Point<T> const& c) {
+bool inside(Point<T> const& p, Point<T> const& a, Point<T> const& b, Point<T> const& c) {
   int x = side(p, a, b);
   int y = side(p, b, c);
   int z = side(p, c, a);
   return !((x == +1 || y == +1 || z == +1) && (x == -1 || y == -1 || z == -1));
 }
 
-template<typename T> // se um ponto p está dentro de um polígono convexo
+template<typename T> // pt num poly convexo
 bool inside_convex(Point<T> const& p, Poly<T> const& poly) { // ccw 
   int bl = 2, br = size(poly)-1;
   while (bl < br) {
@@ -424,8 +413,7 @@ enum Where {
   Boundary = 0,
 };
 
-// apenas para pontos inteiros, funciona para não convexo
-template<typename T>
+template<typename T> // pt num poly simples (convexo ou não)
 Where inside(Point<T> const& p, Poly<T> const& A) { // ccw
   int N = size(A), w = 0;
   for (int i = 0; i < N; i++) {
@@ -447,3 +435,4 @@ Where inside(Point<T> const& p, Poly<T> const& A) { // ccw
   }
   return (w ? Inside : Outside);
 }
+//}}}
