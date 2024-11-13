@@ -3,9 +3,7 @@ using namespace std;
 
 #define int long long
 
-// TODO: Colored Output
-
-// Debug Base {{{
+// Debug Base (v0.75 - 13/11/2024) {{{
 const string RESET = "\033[0m";
 const string BLACK = "\033[30m";
 const string WHITE = "\033[37m";
@@ -93,7 +91,7 @@ void dbg_out() { cout << endl; }
 template <typename X, typename... Y>
 void dbg_out(string line, X x, Y... y) {
   auto idx = line.find(',');
-  cout << "[" << line.substr(0, idx) << " = " << x << "] ";
+  cout << BLUE << "[" << RED << line.substr(0, idx) << BLUE << " = " << MAGENTA << x << BLUE << "] " << RESET;
   if (idx != string::npos) {
     line = remove_spaces(line.substr(idx+1));
     if constexpr (sizeof...(y) > 0) dbg_out(line, y...);
