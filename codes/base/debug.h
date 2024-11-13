@@ -39,7 +39,8 @@ auto& operator << (ostream& os, set<X> const& var) {
   return os;
 }
 
-template<class X> auto& operator << (ostream& os, multiset<X> const& var) { 
+template<class X>
+auto& operator << (ostream& os, multiset<X> const& var) { 
   auto sep = "";
   for (auto x : var) {
     os << sep << x, sep = " ";
@@ -47,7 +48,8 @@ template<class X> auto& operator << (ostream& os, multiset<X> const& var) {
   return os;
 }
 
-template<class X> auto& operator << (ostream& os, unordered_set<X> const& var) { 
+template<class X>
+auto& operator << (ostream& os, unordered_set<X> const& var) { 
   auto sep = "";
   for (auto x : var) {
     os << sep << x, sep = " "; 
@@ -55,7 +57,8 @@ template<class X> auto& operator << (ostream& os, unordered_set<X> const& var) {
   return os;
 }
 
-template<class X> auto& operator << (ostream& os, deque<X> const& var) { 
+template<class X>
+auto& operator << (ostream& os, deque<X> const& var) { 
   auto sep = "";
   for (auto x : var) {
     os << sep << x, sep = " "; 
@@ -63,7 +66,8 @@ template<class X> auto& operator << (ostream& os, deque<X> const& var) {
   return os;
 }
 
-template<class X, class Y> auto& operator << (ostream& os, map<X, Y> const& var) { 
+template<class X, class Y>
+auto& operator << (ostream& os, map<X, Y> const& var) { 
   auto sep = "";
   for (auto x : var) {
     os << sep << "{" << x.first << " : " << x.second << "}", sep = " "; 
@@ -71,7 +75,8 @@ template<class X, class Y> auto& operator << (ostream& os, map<X, Y> const& var)
   return os;
 }
 
-template<class X, class Y> auto& operator << (ostream& os, unordered_map<X, Y> const& var) { 
+template<class X, class Y>
+auto& operator << (ostream& os, unordered_map<X, Y> const& var) { 
   auto sep = "";
   for (auto x : var) {
     os << sep << "{" << x.first << " : " << x.second << "}", sep = " "; 
