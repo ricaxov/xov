@@ -3,7 +3,7 @@ using namespace std;
 
 #define int long long
 
-// Debug Base (v0.75 - 13/11/2024) {{{
+// Debug Base (v1.0 - 21/11/2024) {{{
 const string RESET = "\033[0m";
 const string BLACK = "\033[30m";
 const string WHITE = "\033[37m";
@@ -84,26 +84,7 @@ auto& operator << (ostream& os, unordered_map<X, Y> const& var) {
   return os;
 }
 
-string remove_spaces(string line) {
-  reverse(begin(line), end(line));
-  while (line.back() == ' ') line.pop_back();
-  reverse(begin(line), end(line));
-  return line;
-}
-
-void dbg_out() { cout << endl; }
-
-template <typename X, typename... Y>
-void dbg_out(string line, X x, Y... y) {
-  auto idx = line.find(',');
-  cout << BLUE << "[" << RED << line.substr(0, idx) << BLUE << " = " << MAGENTA << x << BLUE << "] " << RESET;
-  if (idx != string::npos) {
-    line = remove_spaces(line.substr(idx+1));
-    if constexpr (sizeof...(y) > 0) dbg_out(line, y...);
-  } else {
-    dbg_out();
-  }
-}
-
-#define dbg(...) dbg_out(#__VA_ARGS__, __VA_ARGS__)
+void dbg() { cout << endl; }
+template<typename X, typename...Y> void dbg(X x, Y...y) { cout << MAGENTA << " [" << YELLOW << x << MAGENTA << "]"; dbg(y...); }
+#define dbg(...) cout << RED << "(" << BLUE <<  #__VA_ARGS__ << RED << "):", dbg(__VA_ARGS__), cout << RESET << endl
 //}}}
