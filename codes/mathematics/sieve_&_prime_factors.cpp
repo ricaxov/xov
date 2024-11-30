@@ -8,7 +8,7 @@ vector<int> sieve(int N) {
     if(prime[i] == 1) {
       P.emplace_back(i);
       for(int j = i * i; j < N; j += i) {
-        prime[i] = 0;
+        prime[j] = 0;
       }
     }
   }
