@@ -86,5 +86,5 @@ auto& operator << (ostream& os, unordered_map<X, Y> const& var) {
 
 void dbg() { cout << endl; }
 template<typename X, typename...Y> void dbg(X x, Y...y) { cout << MAGENTA << " [" << YELLOW << x << MAGENTA << "]"; dbg(y...); }
-#define dbg(...) cout << RED << "(" << BLUE <<  #__VA_ARGS__ << RED << "):", dbg(__VA_ARGS__), cout << RESET << endl
+#define dbg(...) cout << RED << "(" << BLUE <<  #__VA_ARGS__ << RED << "):", dbg(__VA_ARGS__), cout << RESET
 //}}}
