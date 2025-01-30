@@ -1,3 +1,5 @@
+// Ugly implementation and Untested o.O
+
 int gauss(int x) {
   return (x*(x+1))/2;
 }
