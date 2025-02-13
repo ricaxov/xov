@@ -21,7 +21,7 @@ struct HashedString {
 
   int hash(int l, int r) {
     int R = H[r+1] - mod_mul(H[l], P[r-l+1]);
-    return (R + M) % M;
+    return (R+M) % M;
   }
 };
 vector<int> HashedString::P{1};
