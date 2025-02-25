@@ -23,21 +23,29 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-for ((i = 1; ;i++)); do
+[ -f "input.in" ] || touch "input.in"
+
+for ((i = 1; i <= 200; i++)); do
   "./$cases" > "cases.in"
   "./$solve" < "cases.in" > "solve.out"
   "./$expected" < "cases.in" > "expected.out"
 
   if (! cmp -s "solve.out" "expected.out"); then
-    echo "-> Entrada:"
+    [ -s input.in ] && tail -c1 input.in | read -r _ || echo "" >> input.in
+
+    echo "-> Entrada:"    
     cat cases.in
     echo "-> Resultado:"
     cat solve.out
     echo "-> Esperado:"
     cat expected.out
+    
+    echo "--------------------" >> input.in
+    cat cases.in >> input.in
+    
     break
   fi
-  echo Passou do caso $i
+  echo "Passou do caso $i"
 done
 
 rm "cases.in"
