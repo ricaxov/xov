@@ -1,3 +1,19 @@
+/* 
+ab = point_dist(a, b);
+bc = point_dist(b, c);
+ca = point_dist(c, a);
+
+per = ab + bc + ca;
+p = (a*bc + b*ca + c*ab) / per;
+r = abs((a-c)^(b-c)) / per;
+
+p é o ponto do incircle e r o raio
+
+preciso limpar algumas coisas e melhorar a organizacao de td (vou fazer isso amanha)
+idelamente fazer um template de geo int e double (vou fazer isso amanha tbm, to com dor de cabeça agr e to com sono)
+*/
+
+
 // Geometry Template (v1.5.0 - 05/11/2024) (Jotinha, ricaxov, UmMainAkali) - Nacional {{{ 
 const long double EPS = 1e-9;
 const long double PI = acosl(-1.0);
