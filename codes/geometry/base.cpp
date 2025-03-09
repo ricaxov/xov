@@ -406,6 +406,21 @@ void polar_sort(vector<Point<T>>& P) {
   });
 }
 
+template<typename T>
+void angle_sort(vector<Point<T>>& P) {
+  const vector<vector<int>> where = {{3, 2}, {4, 1}};
+ 
+  auto quad = [&](Point<T> const& p) -> int {
+    return where[p.x >= EPS][p.y >= EPS];
+  };
+ 
+  sort(begin(P), end(P), [&](Point<T> const& a, Point<T> const& b) {
+    int qa = quad(a), qb = quad(b);
+    return (qa == qb ? (a^b) > EPS : qa < qb);
+  });
+}
+
+
 template<typename T> // ccw
 bool inside(Point<T> const& p, Point<T> const& a, Point<T> const& b, Point<T> const& c) {
   int x = side(p, a, b);
