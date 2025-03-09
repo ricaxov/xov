@@ -390,17 +390,17 @@ pair<int, int> pick(Poly<T> const& P) { // ccw
   return {inside, boundary};
 }
 
-template<typename T> // ccw (sort pelo ang)
-void polar_sort(vector<Point<T>>& P) {
-  auto sign = [&](T const& a) -> int {
-    return (a > EPS) - (a < -EPS);
+template<typename T>
+void angle_sort(vector<Point<T>>& P) {
+  const vector<vector<int>> where = {{3, 2}, {4, 1}};
+ 
+  auto quad = [&](Point<T> const& p) -> int {
+    return where[p.x >= EPS][p.y >= EPS];
   };
-  auto half = [&](Point<T> const& a) -> int {
-    return (!eq(a.y, T()) ? sign(a.y) : -sign(a.x));
-  };
+ 
   sort(begin(P), end(P), [&](Point<T> const& a, Point<T> const& b) {
-    int ha = half(a), hb = half(b);
-    return (ha == hb ? (a^b) > 0 : ha < hb);
+    int qa = quad(a), qb = quad(b);
+    return (qa == qb ? (a^b) > EPS : qa < qb);
   });
 }
 
