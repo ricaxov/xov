@@ -23,19 +23,18 @@ NEUTRAL='\033[0m'
 RED='\033[0;31m'
 
 input_file="input.in"
-temp_input="temp_input.in"
 
 if [ -f "$input_file" ]; then
   case_number=1
-  awk -v RS="$custom_separator" '{print > "case_" NR ".in"}' "$input_file"
+  awk -v RS="$custom_separator" '{ printf "%s", $0 > sprintf("case_%02d.in", NR) }' "$input_file"
 
-  for case_input in case_*.in; do
+  for case_input in $(ls case_*.in | sort -V); do
     output_solve="output_solve.out"
     output_expected="output_expected.out"
     
     ./"$solve" < "$case_input" > "$output_solve"
     ./"$expected" < "$case_input" > "$output_expected"
-    
+
     if diff -q "$output_solve" "$output_expected" > /dev/null; then
       echo -e "${GREEN}[Accepted]${NEUTRAL} Caso $case_number"
     else
