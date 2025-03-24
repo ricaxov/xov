@@ -3,9 +3,9 @@ template<unsigned P>
 struct Z {
   unsigned value;
 
-  Z() : value(0) {}
+  constexpr Z() : value(0) {}
   
-  Z(int x) : value(((x%P)+P)%P) {}
+  constexpr Z(int x) : value(((x%P)+P)%P) {}
   
   Z& operator += (Z m) {
     value += m.value;
@@ -20,7 +20,7 @@ struct Z {
   }
 
   Z& operator *= (Z m) {
-    (value *= m.value) %= P;
+    value = (unsigned int)value * m.value % P;
     return *this;
   }
 
@@ -43,7 +43,7 @@ struct Z {
   friend Z operator * (Z l, Z m) { return l *= m; }
 
   friend Z operator / (Z l, Z m) { return l /= m; }
- 
+  
   friend ostream& operator << (ostream& os, Z a) { os << a.value; return os; }
   
   friend istream& operator >> (istream& is, Z& a) { int x; is >> x; a = Z(x); return is; }
