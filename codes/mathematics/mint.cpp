@@ -1,66 +1,65 @@
-// Z_P (Modular Arithmetic) {{{
-template <unsigned P>
+// Modular Arithmetic {{{
+template<unsigned P>
 struct Z {
   unsigned value;
 
   constexpr Z() : value(0) {}
-
-  template<typename T, typename = enable_if_t<is_integral<T>::value>>
-  constexpr Z(T rhs) : value(((rhs % P) + P) % P) {}
-
-  Z& operator += (Z rhs) {
-    value += rhs.value;
+  
+  constexpr Z(int x) : value(((x%P)+P)%P) {}
+  
+  Z& operator += (Z m) {
+    value += m.value;
     if (value >= P) value -= P;
     return *this;
   }
 
-  Z& operator -= (Z rhs) {
-    value += P - rhs.value;
+  Z& operator -= (Z m) {
+    value += P - m.value;
     if (value >= P) value -= P;
     return *this;
   }
 
-  Z& operator *= (Z rhs) {
-    value = ((unsigned int)value * rhs.value) % P;
+  Z& operator *= (Z m) {
+    value = (unsigned int)value * m.value % P;
     return *this;
   }
 
-  Z& operator /= (Z rhs) { return *this *= pow(rhs, -1); }
+  Z& operator /= (Z m) { 
+    return *this *= pow(m, -1);
+  }
 
   Z operator + () const { return *this; }
 
   Z operator - () const { return Z() - *this; }
 
-  bool operator == (Z rhs) const { return value == rhs.value; }
+  bool operator == (Z m) const { return value == m.value; }
 
-  bool operator != (Z rhs) const { return value != rhs.value; }
+  bool operator != (Z m) const { return value != m.value; }
 
-  friend Z operator + (Z lhs, Z rhs) { return lhs += rhs; }
+  friend Z operator + (Z l, Z m) { return l += m; }
 
-  friend Z operator - (Z lhs, Z rhs) { return lhs -= rhs; }
+  friend Z operator - (Z l, Z m) { return l -= m; }
 
-  friend Z operator * (Z lhs, Z rhs) { return lhs *= rhs; }
+  friend Z operator * (Z l, Z m) { return l *= m; }
 
-  friend Z operator / (Z lhs, Z rhs) { return lhs /= rhs; }
-
-  friend ostream& operator << (ostream& out, Z rhs) { return out << rhs.value; }
-
-  friend istream& operator >> (istream& in, Z& rhs) { int x; in >> x, rhs = Z(x); return in; }
+  friend Z operator / (Z l, Z m) { return l /= m; }
+  
+  friend ostream& operator << (ostream& os, Z a) { os << a.value; return os; }
+  
+  friend istream& operator >> (istream& is, Z& a) { int x; is >> x; a = Z(x); return is; }
 };
 
 template<unsigned P>
-Z<P> pow(Z<P> x, int p) {
-  if (x == 0) return (p == 0 ? 1 : 0);
+Z<P> pow(Z<P> b, int e) {
+  if (b == 0) return e == 0 ? 1 : 0;
+  e %= P-1;
+  if (e < 0) e += P-1;
 
-  p %= P-1;
-  if (p < 0) p += P-1;
-  
-  Z<P> res = 1;
-  while (p > 0) {
-    if (p % 2 != 0) res *= x;
-    x *= x, p /= 2;
+  Z<P> ans = 1;
+  while (e) {
+    if (e & 1) ans *= b;
+    b *= b, e >>= 1;
   }
-
-  return res;
+  return ans;
 }
 //}}}
