@@ -101,7 +101,12 @@
 - [ ] **Stirling Numbers** *(0/3 done)*  
   - [ ] Problem 1  
   - [ ] Problem 2  
-  - [ ] Problem 3  
+  - [ ] Problem 3
+
+- [ ] **Combinatorics** *(0/3 done)*  
+  - [ ] Problem 1  
+  - [ ] Problem 2  
+  - [ ] Problem 3
 
 - [ ] **Fast Fourier Transform** *(0/3 done)*  
   - [ ] Problem 1  
